@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"module": "ES2022",
+		"strict": true,
+		"moduleResolution": "Node",
+		"noImplicitAny": true,
+		"sourceMap": true,
+		"allowSyntheticDefaultImports": true
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "**/*.spec.ts"],
+	"ts-node": {
+		"esm": true,
+		"compilerOptions": {
+			"module": "CommonJS"
+		}
+	}
+}
