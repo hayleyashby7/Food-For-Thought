@@ -1,8 +1,9 @@
 import { Sequelize } from 'sequelize';
+import { config } from 'dotenv';
 
-const sequelize = new Sequelize('your_db_name', 'your_db_user', 'your_db_password', {
-  host: 'localhost',
-  dialect: 'postgres',
-});
+// Load environment variables
+config({ path: './config/config.env' });
+
+const sequelize = new Sequelize(process.env.DATABASE_URL as string);
 
 export default sequelize;
