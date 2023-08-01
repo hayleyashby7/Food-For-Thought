@@ -18,12 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Developer logging
 if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
+	console.log('Running in development mode');
+	app.use(morgan('dev'));
 }
-
 
 // Routes
 app.get('/', (req, res) => res.send('Food for thought API'));
-
 
 export default app;
