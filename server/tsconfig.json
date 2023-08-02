@@ -12,7 +12,9 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true,
-		"typeRoots": ["node_modules/@types"]
+		"typeRoots": ["node_modules/@types"],
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
 	},
 	"ts-node": {
 		"esm": true,

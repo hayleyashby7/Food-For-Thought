@@ -1,5 +1,4 @@
-import { DietType } from '../types/mealplan.types';
-import { isDietType } from '../types/mealplan.types';
+import { DietType, isDietType } from '../types/diet.types';
 
 interface validRequest {
 	valid: boolean;
