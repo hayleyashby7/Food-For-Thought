@@ -20,7 +20,7 @@ const Nav_Item: React.FC<Nav_Item_Props> = ({ linkTo, text }) => (
 
 const Nav: React.FC = () => (
   <nav className="flex flex-grow items-center w-full">
-    <ul className="flex flex-row justify-evenly w-full">
+    <ul className="flex flex-row justify-evenly w-full font-bold text-lg">
       <Nav_Item linkTo="/" text="Home" />
       <Nav_Item linkTo="/login" text="Login" />
       <Nav_Item linkTo="/mealplanner" text="Meal Planner" />

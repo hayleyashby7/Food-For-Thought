@@ -1,9 +1,9 @@
 import React from "react";
-import Logo from "../../assets/images/SpoonacularLogo.png";
+import DishImage from "../../assets/images/dishes.jpg";
 
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-green-600  text-red-900">
+    <div className="flex flex-col items-center bg-yellow-100 text-red-900 w-full h-96">
       <p className="text-center text-2xl">
         <strong>Welcome to our Food For Thought App!</strong>
       </p>
@@ -14,7 +14,13 @@ const Home: React.FC = () => {
           calorie intake, ingredients etc.
         </strong>
       </p>
-      <img src={Logo} alt="spoonacular Logo" className="block mx-auto" />
+      <br />
+      <br />
+      <img
+        src={DishImage}
+        alt="Images of different dishes"
+        className="block mx-auto h-64"
+      />
     </div>
   );
 };
