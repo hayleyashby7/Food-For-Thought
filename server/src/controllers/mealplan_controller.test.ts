@@ -1,25 +1,36 @@
-import { enableFetchMocks } from 'jest-fetch-mock';
-import { FetchMock } from 'jest-fetch-mock';
 import request from 'supertest';
 import app from '../app';
+import { server } from '../mocks/server';
 
-enableFetchMocks();
+beforeAll(() =>
+	server.listen({
+		onUnhandledRequest(req, print) {
+			// Exclude our own API calls as they are not mocked
+			if (req.url.pathname.startsWith('/api')) {
+				return;
+			}
 
-const fetchMock = fetch as FetchMock;
+			print.warning();
+		},
+	})
+);
+
+afterEach(() => server.resetHandlers());
+
+afterAll(() => server.close());
+
 describe('GET /mealplan endpoint', () => {
 	test('It should respond with a 200 status code', async () => {
 		// Arrange
-		fetchMock.mockResponseOnce(JSON.stringify({ status: 200 }));
 
 		// Act
 		const response = await request(app).get('/api/mealplan?calories=2000&diet=vegetarian&exclude=shellfish');
 
 		// Assert
 		expect(response.statusCode).toEqual(200);
-		expect(fetchMock).toHaveBeenCalledTimes(1);
 	});
 
-	/* test('It should return a meal list when passed the correct parameters', async () => {
+	test('It should return a meal list when passed the correct parameters', async () => {
 		// Arrange
 		const mockResponse = {
 			status: 200,
@@ -56,13 +67,10 @@ describe('GET /mealplan endpoint', () => {
 				carbohydrates: 244.38,
 			},
 		};
-
-		fetchMock.mockResponseOnce(JSON.stringify(mockResponse));
-
 		// Act
 		const response = await request(app).get('/api/mealplan?calories=2000&diet=vegetarian&exclude=shellfish');
 
 		// Assert
 		expect(response.body).toEqual(mockResponse);
-	}); */
+	});
 });
