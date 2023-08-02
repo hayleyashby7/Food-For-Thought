@@ -1,63 +1,31 @@
-import { useMatch, Link } from "react-router-dom";
-import { ReactNode, CSSProperties } from "react";
+import { NavLink } from "react-router-dom";
 
-interface CustomNavLinkProps {
-  to: string;
-  children: ReactNode;
-  activeStyle: CSSProperties;
-  inactiveStyle: CSSProperties;
+interface Nav_Item_Props {
+  linkTo: string;
+  text: string;
 }
 
-function CustomLink({
-  to,
-  children,
-  activeStyle,
-  inactiveStyle,
-}: CustomNavLinkProps) {
-  const match = useMatch({ path: to });
+const Nav_Item: React.FC<Nav_Item_Props> = ({ linkTo, text }) => (
+  <li>
+    <NavLink
+      to={linkTo}
+      className={({ isActive }) =>
+        isActive ? "text-red-500" : "text-green-900"
+      }
+    >
+      {text}
+    </NavLink>
+  </li>
+);
 
-  return (
-    <Link to={to} style={match ? activeStyle : inactiveStyle}>
-      {children}
-    </Link>
-  );
-}
-
-const Nav = () => {
-  const activeStyle = { color: "red", textDecoration: "underline" };
-  const inactiveStyle = { color: "green-900", textDecoration: "none" };
-
-  return (
-    <ul className="flex space-x-96 text-3xl">
-      <li className="inline">
-        <CustomLink
-          to="/"
-          activeStyle={activeStyle}
-          inactiveStyle={inactiveStyle}
-        >
-          Home
-        </CustomLink>
-      </li>
-      <li className="inline">
-        <CustomLink
-          to="/login"
-          activeStyle={activeStyle}
-          inactiveStyle={inactiveStyle}
-        >
-          Login
-        </CustomLink>
-      </li>
-      <li className="inline">
-        <CustomLink
-          to="/mealplanner"
-          activeStyle={activeStyle}
-          inactiveStyle={inactiveStyle}
-        >
-          Mealplanner
-        </CustomLink>
-      </li>
+const Nav: React.FC = () => (
+  <nav className="flex flex-grow items-center w-full">
+    <ul className="flex flex-row justify-evenly w-full">
+      <Nav_Item linkTo="/" text="Home" />
+      <Nav_Item linkTo="/login" text="Login" />
+      <Nav_Item linkTo="/mealplanner" text="Meal Planner" />
     </ul>
-  );
-};
+  </nav>
+);
 
 export default Nav;
