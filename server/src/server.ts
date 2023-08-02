@@ -1,6 +1,6 @@
 import app from './app';
 import { config } from 'dotenv';
-import sequelize from './database';
+import sequelize from './database/database';
 
 // Load environment variables
 config({ path: './config/config.env' });
