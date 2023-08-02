@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "Food For Thought - a full stack meal planning app.",
 	"main": "index.js",
-	"type": "module",
 	"scripts": {
 		"test": "jest",
 		"start": "ts-node src/server.ts",
