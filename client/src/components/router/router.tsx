@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "../layout/layout";
 import Home from "../home/home";
-import Login from "../login/login";
+import Startplanning from "../start_planning/start_planning";
 import NotFound from "../not_found/not_found";
 
 export const Router: React.FC = () => {
@@ -9,7 +9,7 @@ export const Router: React.FC = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
+        <Route path="startplanning" element={<Startplanning />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

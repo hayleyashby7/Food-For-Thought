@@ -22,7 +22,7 @@ const Nav: React.FC = () => (
   <nav className="flex flex-grow items-center w-full">
     <ul className="flex flex-row justify-evenly w-full font-bold text-lg">
       <Nav_Item linkTo="/" text="Home" />
-      <Nav_Item linkTo="/login" text="Login" />
+      <Nav_Item linkTo="/startplanning" text="Start Planning" />
     </ul>
   </nav>
 );
