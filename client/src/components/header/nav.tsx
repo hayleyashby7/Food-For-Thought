@@ -23,7 +23,6 @@ const Nav: React.FC = () => (
     <ul className="flex flex-row justify-evenly w-full font-bold text-lg">
       <Nav_Item linkTo="/" text="Home" />
       <Nav_Item linkTo="/login" text="Login" />
-      <Nav_Item linkTo="/mealplanner" text="Meal Planner" />
     </ul>
   </nav>
 );
