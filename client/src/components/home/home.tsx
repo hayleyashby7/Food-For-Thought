@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       <img
         src={DishImage}
         alt="Images of different dishes"
-        className="block mx-auto h-96"
+        className="block mx-auto h-64"
       />
     </div>
   );

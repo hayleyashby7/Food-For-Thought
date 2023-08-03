@@ -6,7 +6,7 @@ const Header: React.FC = () => (
     <img
       src={FFTLogo}
       alt="Food For Thought Logo"
-      className="block mx-auto h-24 m-2"
+      className="block mx-auto h-32 m-2"
     />
     <Nav />
   </header>
