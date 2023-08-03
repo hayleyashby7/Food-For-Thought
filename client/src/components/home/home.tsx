@@ -10,8 +10,8 @@ const Home: React.FC = () => {
       <br />
       <p className="text-center text-2xl">
         <strong>
-          Here you can browse a list of recipes, or you can plan a meal by
-          calorie intake, ingredients etc.
+          Here you can browse recipes for daily meal plans by calorie intake,
+          diet type, nutritional info etc.
         </strong>
       </p>
       <br />
