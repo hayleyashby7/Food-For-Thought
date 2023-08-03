@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import { config } from 'dotenv';
+import { router } from './routes/routes';
 
 // Load environment variables
 config({ path: './config/config.env' });
@@ -24,5 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Routes
 app.get('/', (req, res) => res.send('Food for thought API'));
+
+app.use('/api', router);
 
 export default app;
