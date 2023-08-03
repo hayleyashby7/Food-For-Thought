@@ -1,10 +1,25 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
+
+import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+
 import App from "./App.tsx";
 import "./index.css";
+import CalorieInput from "./components/CalorieInput.tsx";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "calorieinput",
+    element: <CalorieInput />,
+  },
+]);
+
+createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
