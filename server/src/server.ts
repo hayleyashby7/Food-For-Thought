@@ -1,6 +1,7 @@
 import app from './app';
 import { config } from 'dotenv';
 import sequelize from './database/database';
+import { syncDatabase } from './database/databaseHelper';
 
 // Load environment variables
 config({ path: './config/config.env' });
@@ -18,7 +19,8 @@ const connect = async () => {
 		console.error('Unable to connect to the database:', error);
 	}
 };
-connect();
+connect().then(async () => await syncDatabase());
+
 
 // Listen for requests
 app.listen(serverPort, () => {
