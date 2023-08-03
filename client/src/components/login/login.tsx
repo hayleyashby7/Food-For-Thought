@@ -27,11 +27,11 @@ const Login: React.FC = () => {
           <form onSubmit={handleSubmit}>
             <div>
               <label className="block">
-                <span className="text-gray-700">Username</span>
+                <span className="text-gray-700">Email Address: </span>
                 <input
                   type="text"
                   className="form-input mt-1 block w-full"
-                  placeholder="Enter your username"
+                  placeholder="Enter your email address"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
             </div>
             <div className="mt-4">
               <label className="block">
-                <span className="text-gray-700">Password</span>
+                <span className="text-gray-700">Password: </span>
                 <input
                   type="password"
                   className="form-input mt-1 block w-full"
