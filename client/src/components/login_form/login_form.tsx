@@ -1,12 +1,22 @@
 import React, { useState } from "react";
+import { validate } from "../validation/validate_login";
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ username: "", password: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(`Username: ${username}, Password: ${password}`);
+
+    const { isValid, errors } = validate(username, password);
+    setErrors(errors);
+
+    if (isValid) {
+      console.log(`Username: ${username}, Password: ${password}`);
+      setUsername("");
+      setPassword("");
+    }
   };
 
   return (
@@ -24,6 +34,7 @@ const LoginForm: React.FC = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
+        {errors.username && <p className="text-red-600">{errors.username}</p>}
       </div>
       <div className="mb-4 md:mb-0 md:mr-4">
         <label className="block">
@@ -35,6 +46,7 @@ const LoginForm: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
+        {errors.password && <p className="text-red-600">{errors.password}</p>}
       </div>
       <div className="mt-4">
         <button
