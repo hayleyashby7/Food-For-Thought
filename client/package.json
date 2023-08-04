@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
+    "build:css": "postcss src/index.css -o src/output.css",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest"

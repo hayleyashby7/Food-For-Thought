@@ -3,15 +3,15 @@ import DishImage from "../../assets/images/dishes.jpg";
 
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col items-center bg-yellow-100 text-red-900 w-full h-full sm:h-96 p-4 sm:p-0">
-      <p className="text-center text-sm sm:text-2xl px-2">
+    <div className="flex flex-col items-center justify-center bg-yellow-100 text-red-900 w-full h-full sm:h-96 p-4 sm:p-0 md:max-w-xl mx-auto">
+      <p className="text-center sm:text-left text-sm sm:text-2xl px-2 flex-shrink">
         <strong>
           Welcome to our{" "}
-          <span className="gradient-text text-2xl">Food For Thought</span> App!
+          <span className="gradient-text text-3xl">Food For Thought</span> App!
         </strong>
       </p>
       <br />
-      <p className="text-center text-sm sm:text-2xl px-2">
+      <p className="text-center sm:text-left text-sm sm:text-2xl px-2 flex-shrink">
         <strong>
           Here you can browse recipes for daily meal plans by calorie intake,
           diet type, nutritional info etc.
