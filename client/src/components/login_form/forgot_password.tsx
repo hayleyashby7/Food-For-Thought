@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
-  import.meta.env.VITE_APP_SUPABASE_URL,
-  import.meta.env.VITE_APP_SUPABASE_ANON_KEY
+  "https://lyvfiqkbuwzajozklwow.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5dmZpcWtidXd6YWpvemtsd293Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTA4MjQwOTUsImV4cCI6MjAwNjQwMDA5NX0.e4WjzlbK9Nbt14N3qmL92rmB13dYFw4JaU9_6i2y7yI"
 );
 
 const ForgotPasswordForm: React.FC = () => {

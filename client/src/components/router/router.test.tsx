@@ -15,7 +15,6 @@ test("Router renders startplanning page", () => {
   renderWithRouter(<Router />, { route: "/startplanning" });
 
   const startPlanningElement = screen.getByRole("main");
-  console.log(startPlanningElement.textContent);
 
   expect(startPlanningElement).toBeInTheDocument();
   expect(startPlanningElement).toHaveTextContent("Start Planning");
