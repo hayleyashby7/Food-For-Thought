@@ -22,7 +22,7 @@ const LoginForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col md:flex-row justify-between border-2 border-red-500 m-4 p-2"
+      className="flex flex-col md:flex-row justify-between border-2 border-red-500 m-4 p-2 rounded-lg w-full"
     >
       <div className="mb-4 md:mb-0 md:mr-4">
         <label className="block">

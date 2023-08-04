@@ -9,6 +9,9 @@ const Header: React.FC = () => (
       alt="Food For Thought Logo"
       className="block mx-auto h-32 m-2"
     />
+    <h1 className="p-2 m-2 gradient-text text-4xl">
+      <strong>Food For Thought</strong>
+    </h1>
     <Nav />
     <LoginForm />
   </header>
