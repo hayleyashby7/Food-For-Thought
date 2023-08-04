@@ -22,10 +22,10 @@ const LoginForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col md:flex-row justify-between border-2 border-red-500 m-4 p-2 rounded-lg w-full"
+      className="flex flex-col md:flex-row justify-between border-2 border-red-500 m-4 p-2 rounded-lg w-full md:max-w-xl mx-auto"
     >
-      <div className="mb-4 md:mb-0 md:mr-4">
-        <label className="block">
+      <div className="flex flex-col mb-4 md:mb-0 md:mr-4 flex-shrink">
+        <label className="block text-center sm:text-left">
           <span className="text-green-800">Email Address: </span>
           <input
             type="text"
@@ -38,8 +38,8 @@ const LoginForm: React.FC = () => {
           <p className="text-red-600">{errors.emailaddress}</p>
         )}
       </div>
-      <div className="mb-4 md:mb-0 md:mr-4">
-        <label className="block">
+      <div className="flex flex-col mb-4 md:mb-0 md:mr-4 flex-shrink">
+        <label className="block text-center sm:text-left">
           <span className="text-green-800">Password: </span>
           <input
             type="password"

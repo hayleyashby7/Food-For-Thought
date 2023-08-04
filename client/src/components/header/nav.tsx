@@ -6,7 +6,7 @@ interface Nav_Item_Props {
 }
 
 const Nav_Item: React.FC<Nav_Item_Props> = ({ linkTo, text }) => (
-  <li>
+  <li className="flex-shrink text-center sm:text-left">
     <NavLink
       to={linkTo}
       className={({ isActive }) =>
@@ -18,8 +18,8 @@ const Nav_Item: React.FC<Nav_Item_Props> = ({ linkTo, text }) => (
   </li>
 );
 const Nav: React.FC = () => (
-  <nav className="flex flex-grow items-center w-full">
-    <ul className="flex flex-col sm:flex-row justify-evenly w-full font-bold text-sm sm:text-lg">
+  <nav className="flex flex-grow items-center w-full md:max-w-xl">
+    <ul className="flex flex-col sm:flex-row justify-evenly w-full font-bold text-lg">
       <Nav_Item linkTo="/" text="Home" />
       <Nav_Item linkTo="/startplanning" text="Start Planning" />
     </ul>

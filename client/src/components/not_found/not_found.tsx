@@ -5,14 +5,16 @@ const NotFound = () => (
     <img
       src={PNFImage}
       alt="404 page not found"
-      className="w-full md:max-w-lg"
+      className="w-full md:max-w-lg flex-shrink"
     />
-    <h2 className="text-2xl md:text-4xl">
-      <strong>404 - Page Not Found!</strong>
-    </h2>
-    <p className="text-xl md:text-2xl">
-      <strong>Sorry! Please go back to the homepage and try again.</strong>
-    </p>
+    <div className="text-center sm:text-left md:max-w-xl flex flex-col justify-center items-center sm:items-start">
+      <h2 className="text-2xl md:text-4xl">
+        <strong>404 - Page Not Found!</strong>
+      </h2>
+      <p className="text-xl md:text-2xl">
+        <strong>Sorry! Please go back to the homepage and try again.</strong>
+      </p>
+    </div>
   </div>
 );
 
