@@ -1,6 +1,9 @@
+import { Meal } from "../models/meal";
+import { MealPlan } from "../models/mealplan";
+import { Nutrients } from "../models/nutrients";
 import { Diet } from '../models/diet';
-import { MealPlan } from '../models/mealplan';
 import { DIET } from '../types/diet.types';
+
 
 export async function syncDatabase() {
 	console.debug('Syncing database');
@@ -12,6 +15,19 @@ export async function syncDatabase() {
 	} catch (error) {
 		console.error('Issue syncing database', error);
 	}
+}
+
+
+    console.debug("Synching database");
+    try {
+        await MealPlan.sync();
+        await Meal.sync();
+        await Diet.sync();
+        console.log("Database has been synched")
+        await seedDatabase();
+    } catch (error) {
+        console.error("Issue synching database", error)
+    }
 }
 
 async function seedDatabase() {
