@@ -1,8 +1,7 @@
-import { RenderOptions, render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Router from "./router";
-import { ReactElement } from "react";
-import { MemoryRouter } from "react-router-dom";
+import { renderWithRouter } from "../../utils/test_utils";
 
 test("Router renders homepage", () => {
   renderWithRouter(<Router />);
@@ -34,12 +33,3 @@ test("Router renders not found page", () => {
     "Sorry! Please go back to the homepage and try again."
   );
 });
-export const renderWithRouter = (
-  ui: ReactElement,
-  { route = "/" } = {},
-  options?: Omit<RenderOptions, "queries">
-) => {
-  return render(<MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>, {
-    ...options,
-  });
-};
