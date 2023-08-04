@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { validate } from "../validation/validate_login";
+import { Link } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
   const [emailaddress, setEmailaddress] = useState("");
@@ -57,6 +58,18 @@ const LoginForm: React.FC = () => {
         >
           Login
         </button>
+      </div>
+      <div className="mt-4 text-center">
+        <Link
+          to="/forgot-password"
+          className="text-green-900 hover:text-green-700"
+        >
+          Forgot Password?
+        </Link>
+        <br />
+        <Link to="/signup" className="text-green-900 hover:text-green-700">
+          Don't have an account? Sign Up
+        </Link>
       </div>
     </form>
   );
