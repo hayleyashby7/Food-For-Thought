@@ -1,8 +1,13 @@
 import express from 'express';
-import { createMealPlan, getMealPlan } from '../controllers/mealplan_controller';
+import * as mealPlan from '../controllers/mealplan_controller';
+import * as diet from '../controllers/diet_controller';
+
 
 export const router = express.Router();
 
 // Mealplan routes
-router.post('/mealplan', createMealPlan)
-router.get('/mealplan', getMealPlan);
+router.get('/mealplan', mealPlan.getMealPlan);
+router.post('/mealplan', mealPlan.createMealPlan)
+
+// Diet routes
+router.get('/diets', diet.getAllDiets);
