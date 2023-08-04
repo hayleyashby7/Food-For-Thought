@@ -4,6 +4,8 @@ import Home from "../home/home";
 import StartPlanning from "../start_planning/start_planning";
 import NotFound from "../not_found/not_found";
 import StartButton from "../start_planning/StartButton";
+import LoginForm from "../login_form/login_form";
+import Signup from "../login_form/signup";
 
 export const Router: React.FC = () => {
   return (
@@ -11,7 +13,9 @@ export const Router: React.FC = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="startplanning" element={<StartPlanning />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="login" element={<LoginForm />} />
+        <Route path="signup" element={<Signup />} />
+
         <Route
           path="startbutton"
           element={
@@ -23,6 +27,7 @@ export const Router: React.FC = () => {
             />
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

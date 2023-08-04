@@ -1,6 +1,10 @@
-export const validate = (emailaddress: string, password: string) => {
+export const validate = (
+  emailaddress: string,
+  password: string,
+  confirmPassword?: string
+) => {
   let isValid = true;
-  const errors = { emailaddress: "", password: "" };
+  const errors = { emailaddress: "", password: "", confirmPassword: "" };
 
   if (!emailaddress.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
     isValid = false;
@@ -15,6 +19,11 @@ export const validate = (emailaddress: string, password: string) => {
     isValid = false;
     errors.password =
       "Password must be at least 8 characters, and include at least one uppercase letter, one lowercase letter, one number, and one special character";
+  }
+
+  if (confirmPassword !== undefined && password !== confirmPassword) {
+    isValid = false;
+    errors.confirmPassword = "Password and confirmation password must match";
   }
 
   return { isValid, errors };
