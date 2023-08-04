@@ -1,6 +1,6 @@
 import carrotWordCloud from "../../assets/images/CarrotWordCloud.jpg";
 
-const Startplanning: React.FC = () => {
+const StartPlanning: React.FC = () => {
   return (
     <div className="flex flex-row min-h-screen bg-yellow-100">
       <div className="flex-1 flex">
@@ -10,8 +10,9 @@ const Startplanning: React.FC = () => {
           className="h-96 w-auto border-4 border-orange-400"
         />
       </div>
+      <div>Start Planning your meals here...</div>
     </div>
   );
 };
 
-export default Startplanning;
+export default StartPlanning;
