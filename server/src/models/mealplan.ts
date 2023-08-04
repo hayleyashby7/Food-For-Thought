@@ -1,28 +1,28 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, InferCreationAttributes, InferAttributes, CreationOptional, HasManyGetAssociationsMixin, Association, NonAttribute, HasManySetAssociationsMixin, HasManyAddAssociationsMixin } from 'sequelize';
 import sequelize from '../database/database'
+import { Meal } from './meal';
 
-export class MealPlan extends Model {
-  public title!: string;
-  public imageType!: string;
-  public readyInMinutes!: number;
-  public servings!: number;
-  public sourceUrl!: string;
-  public userId!: string;
-  // public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+export class MealPlan extends Model<InferAttributes<MealPlan>, InferCreationAttributes<MealPlan>> {
+  declare id: CreationOptional<number>;
+  declare userId: string;
 
+  declare getMeals: HasManyGetAssociationsMixin<Meal>;
+  declare setMeals: HasManyAddAssociationsMixin<Meal, number>;
+
+  
+
+  declare meals?: NonAttribute<Meal[]>;
   static associate(models: any) {
-    MealPlan.belongsTo(sequelize.models['auth.users'], { foreignKey: 'userId', as: 'user', targetKey: "id" });
+    MealPlan.belongsTo(sequelize.models['auth.users'], { foreignKey: 'userId', as: 'user', targetKey: "id" });    
   }
-}
 
+  declare static associations: {
+    meals: Association<MealPlan, Meal>;
+  };
+}
 MealPlan.init(
   {
-    title: DataTypes.STRING,
-    imageType: DataTypes.STRING,
-    readyInMinutes: DataTypes.INTEGER,
-    servings: DataTypes.INTEGER,
-    sourceUrl: DataTypes.STRING,
+    id: {type: DataTypes.INTEGER.UNSIGNED,autoIncrement:true, primaryKey:true},
     userId: {
       type: DataTypes.UUID, references:
       {
@@ -35,7 +35,14 @@ MealPlan.init(
     }
   },
   {
-    sequelize: sequelize,
-    modelName: 'MealPlan',
+    sequelize,
   }
 );
+
+MealPlan.hasMany(Meal,{
+  sourceKey:'id',
+  foreignKey:'mealPlanId',
+  as: 'meals'
+});
+
+
