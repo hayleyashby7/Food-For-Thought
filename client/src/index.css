@@ -1,5 +1,19 @@
-@font-face {
-  font-family: "BungeeSpice";
-  src: url("/fonts/BungeeSpice-Regular.ttf") format("truetype");
-  font-weight: 400;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    rgb(238, 6, 6),
+    rgb(82, 4, 4),
+    orange,
+    rgb(153, 63, 8),
+    rgb(214, 233, 6),
+    rgb(50, 126, 4),
+    rgb(3, 70, 3)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
