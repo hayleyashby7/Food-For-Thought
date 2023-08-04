@@ -1,4 +1,4 @@
-import app from './app';
+import server from './app';
 import { config } from 'dotenv';
 import sequelize from './database/database';
 import { syncDatabase } from './database/databaseHelper';
@@ -23,6 +23,6 @@ connect().then(async () => await syncDatabase());
 
 
 // Listen for requests
-app.listen(serverPort, () => {
+server.listen(serverPort, () => {
 	console.log(`Started server on port ${serverPort}`);
 });
