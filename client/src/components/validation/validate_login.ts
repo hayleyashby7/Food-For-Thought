@@ -1,10 +1,10 @@
-export const validate = (username: string, password: string) => {
+export const validate = (emailaddress: string, password: string) => {
   let isValid = true;
-  const errors = { username: "", password: "" };
+  const errors = { emailaddress: "", password: "" };
 
-  if (!username.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+  if (!emailaddress.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
     isValid = false;
-    errors.username = "Please input email address in the correct format";
+    errors.emailaddress = "Please input email address in the correct format";
   }
 
   if (
