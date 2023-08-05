@@ -8,26 +8,15 @@ import { DIET } from '../types/diet.types';
 export async function syncDatabase() {
 	console.debug('Syncing database');
 	try {
-		await MealPlan.sync({ alter: true });
-		await Diet.sync({ alter: true });
+		await Nutrients.sync({alter:true});
+		await MealPlan.sync({alter:true});
+		await Meal.sync({alter:true});		
+		await Diet.sync({alter:true});
 		console.log('Database has been synced');
 		await seedDatabase();
 	} catch (error) {
 		console.error('Issue syncing database', error);
 	}
-}
-
-
-    console.debug("Synching database");
-    try {
-        await MealPlan.sync();
-        await Meal.sync();
-        await Diet.sync();
-        console.log("Database has been synched")
-        await seedDatabase();
-    } catch (error) {
-        console.error("Issue synching database", error)
-    }
 }
 
 async function seedDatabase() {
