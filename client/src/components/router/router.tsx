@@ -7,6 +7,7 @@ import StartButton from "../start_planning/StartButton";
 import LoginForm from '../login/loginForm';
 import HealthPage from "../health_page/health_page";
 import DietInput from "../start_planning/DietInput";
+import CalorieInput from "../start_planning/CalorieInput";
 
 export const Router: React.FC = () => {
   return (
@@ -28,7 +29,11 @@ export const Router: React.FC = () => {
           }
         />
         <Route path="*" element={<NotFound />} />
-        <Route path="DietInput" element={<DietInput />} />
+        <Route path="calorieinput" element={<CalorieInput />} />
+        <Route
+          path="dietinput"
+          element={<DietInput onDietSelect={() => ""} />}
+        />
       </Route>
     </Routes>
   );
