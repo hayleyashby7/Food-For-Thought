@@ -1,36 +1,64 @@
 import React, { useState } from "react";
 
-const diets = ["vegetarians", "vegan", "gluten-free", "omnivore"];
+interface DietInputProps {
+  onDietSelect: (diet: string) => void;
+}
 
-const DietInput: React.FC = () => {
+const DietInput: React.FC<DietInputProps> = ({ onDietSelect }) => {
   const [selectedDiet, setSelectedDiet] = useState<string>("");
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedDiet(event.target.value);
+  const handleDietSelect = (diet: string) => {
+    setSelectedDiet(diet);
+    onDietSelect(diet);
   };
 
   return (
-    <div className="p-4">
-      <label
-        htmlFor="diet"
-        className="block text-lg font-medium text-black-700 mb-2"
-      >
-        Please Choose Your Type Of Diet:
-      </label>
-      <select
-        id="diet"
-        name="diet"
-        value={selectedDiet}
-        onChange={handleInputChange}
-        className="block w-full p-10 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-orange-500 focus:border-orange-500 bg-orange-500 hover:bg-orange-600"
-      >
-        <option value="">Select a diet</option>
-        {diets.map((diet) => (
-          <option key={diet} value={diet}>
-            {diet}
-          </option>
-        ))}
-      </select>
+    <div className="flex flex-col items-center">
+      <h2 className="text-2xl font-semibold mb-4 ">
+        Please Choose Your Type of Diet:
+      </h2>
+      <div className="flex flex-col space-y-4">
+        <button
+          className={`px-4 py-2 rounded-md ${
+            selectedDiet === "vegetarian"
+              ? "bg-orange-500 text-white"
+              : "bg-gray-200 text-black"
+          }`}
+          onClick={() => handleDietSelect("vegetarian")}
+        >
+          Vegetarian
+        </button>
+        <button
+          className={`px-4 py-2 rounded-md ${
+            selectedDiet === "vegan"
+              ? "bg-orange-500 text-white"
+              : "bg-gray-200 text-black"
+          }`}
+          onClick={() => handleDietSelect("vegan")}
+        >
+          Vegan
+        </button>
+        <button
+          className={`px-4 py-2 rounded-md ${
+            selectedDiet === "gluten-free"
+              ? "bg-orange-500 text-white"
+              : "bg-gray-200 text-black"
+          }`}
+          onClick={() => handleDietSelect("gluten-free")}
+        >
+          Gluten-Free
+        </button>
+        <button
+          className={`px-4 py-2 rounded-md ${
+            selectedDiet === "omnivore"
+              ? "bg-orange-500 text-white"
+              : "bg-gray-200 text-black"
+          }`}
+          onClick={() => handleDietSelect("omnivore")}
+        >
+          Omnivore
+        </button>
+      </div>
     </div>
   );
 };
