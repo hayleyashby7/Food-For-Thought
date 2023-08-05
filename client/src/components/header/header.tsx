@@ -1,6 +1,5 @@
 import Nav from "./nav";
 import FFTLogo from "../../assets/images/logo.png";
-import LoginForm from "../login_form/login_form";
 
 const Header: React.FC = () => (
   <header className="bg-yellow-400 text-green-800 border border-black p-2 font-bold w-full flex flex-col sm:flex-row items-center justify-center box-border">
@@ -13,8 +12,7 @@ const Header: React.FC = () => (
       {" "}
       <strong>Food For Thought</strong>
     </h1>
-    <Nav />
-    <LoginForm />
+    <Nav />   
   </header>
 );
 export default Header;
