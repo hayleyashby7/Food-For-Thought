@@ -1,9 +1,11 @@
 // src/components/CalorieInput.tsx
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CalorieInput: React.FC = () => {
   const [calories, setCalories] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCalories(event.target.value);
@@ -33,6 +35,7 @@ const CalorieInput: React.FC = () => {
         <button
           type="submit"
           className="px-4 py-2 font-semibold rounded-md text-white bg-orange-500 hover:bg-orange-600"
+          onClick={() => navigate("/dietinput")}
         >
           Submit
         </button>

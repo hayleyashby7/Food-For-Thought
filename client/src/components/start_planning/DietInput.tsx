@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface DietInputProps {
   onDietSelect: (diet: string) => void;
@@ -6,10 +7,12 @@ interface DietInputProps {
 
 const DietInput: React.FC<DietInputProps> = ({ onDietSelect }) => {
   const [selectedDiet, setSelectedDiet] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleDietSelect = (diet: string) => {
     setSelectedDiet(diet);
     onDietSelect(diet);
+    navigate("/calorieinput");
   };
 
   return (
