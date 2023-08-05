@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../providers/MealPlannerStore";
 
 interface DietInputProps {
   onDietSelect: (diet: string) => void;
@@ -7,11 +8,15 @@ interface DietInputProps {
 
 const DietInput: React.FC<DietInputProps> = ({ onDietSelect }) => {
   const [selectedDiet, setSelectedDiet] = useState<string>("");
+  const { mealPlannerData, setMealPlannerData } = useContext(Context);
+  console.log("mealPlannerData:", mealPlannerData);
+
   const navigate = useNavigate();
 
   const handleDietSelect = (diet: string) => {
     setSelectedDiet(diet);
     onDietSelect(diet);
+    setMealPlannerData((data) => ({ ...data, dietOption: diet }));
     navigate("/removeingredient");
   };
 
