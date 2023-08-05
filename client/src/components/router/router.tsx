@@ -1,17 +1,33 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "../layout/layout";
 import Home from "../home/home";
-import Login from "../login/login";
-import Mealplanner from "../mealplanner/mealplanner";
+import StartPlanning from "../start_planning/start_planning";
 import NotFound from "../not_found/not_found";
+import StartButton from "../start_planning/StartButton";
+import LoginForm from "../login_form/login_form";
+import Signup from "../login_form/signup";
+import HealthPage from "../health_page/health_page";
 
 export const Router: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="mealplanner" element={<Mealplanner />} />
+        <Route path="startplanning" element={<StartPlanning />} />
+        <Route path="login" element={<LoginForm />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="health" element={<HealthPage />} />
+        <Route
+          path="startbutton"
+          element={
+            <StartButton
+              onClick={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+              label={"Start Planning My Meal"}
+            />
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
