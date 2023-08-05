@@ -6,6 +6,7 @@ import NotFound from "../not_found/not_found";
 import StartButton from "../start_planning/StartButton";
 import LoginForm from "../login_form/login_form";
 import Signup from "../login_form/signup";
+import HealthPage from "../health_page/health_page";
 
 export const Router: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ export const Router: React.FC = () => {
         <Route path="startplanning" element={<StartPlanning />} />
         <Route path="login" element={<LoginForm />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="health" element={<HealthPage />} />
         <Route
           path="startbutton"
           element={
