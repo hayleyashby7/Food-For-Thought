@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../providers/MealPlannerStore";
 
 const CalorieInput: React.FC = () => {
   const [calories, setCalories] = useState("");
   const navigate = useNavigate();
+  const { mealPlannerData, setMealPlannerData } = useContext(Context);
+
+  console.log(mealPlannerData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCalories(event.target.value);
@@ -11,8 +15,10 @@ const CalorieInput: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Handle form submission here (e.g., save the calorie value to state or send data to backend)
     console.log("Calories:", calories);
+
+    setMealPlannerData((data) => ({ ...data, dailyCalories: calories }));
+    navigate("/dietinput");
   };
 
   return (
@@ -25,18 +31,12 @@ const CalorieInput: React.FC = () => {
         <input
           type="number"
           id="calorieInput"
-          value={calories}
           onChange={handleChange}
           className="px-10 py-5 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-orange-500"
           placeholder="Enter Your Calories"
         />
-        <button
-          type="submit"
-          className="px-4 py-2 font-semibold rounded-md text-white bg-orange-500 hover:bg-orange-600"
-          onClick={() => navigate("/dietinput")}
-        >
-          Submit
-        </button>
+
+        <input type="submit" value="Submit" />
       </form>
     </div>
   );
