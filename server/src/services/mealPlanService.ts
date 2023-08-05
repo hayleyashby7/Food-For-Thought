@@ -2,23 +2,23 @@
 import sequelize from '../database/database';
 import { Meal } from '../models/meal';
 import { MealPlan } from '../models/mealplan';
-import { MealPlanData } from '../types/mealdata';
+import { Nutrients } from '../models/nutrients';
+import { MealPlanData } from '../types/mealdataController.types';
 
 export class MealPlanService {
     public static async createMealPlan(mealPlanData: MealPlanData): Promise<void> {
         try {
             const transaction = await sequelize.transaction();
             try {
+                const nutrients = await Nutrients.create(mealPlanData.nutrients)
                 const mealPlan = await MealPlan.create({
-                    userId: '44d1632d-9795-4696-932d-a8a99c251fda'
-                })
-                { transaction }
+                    userId: mealPlanData.userId,
+                    nutrientsId: nutrients.id
 
+                })
                 await Meal.bulkCreate(mealPlanData.meals.map(meal => ({ ...meal, mealPlanId: mealPlan.id })));
-                { transaction }
 
                 await transaction.commit();
-
             } catch (error) {
                 await transaction.rollback();
                 console.error(error);
@@ -30,24 +30,18 @@ export class MealPlanService {
         }
     }
 
-    // public static async getMealPlan(userId: number): Promise<MealPlanData | null> {
-    //     const mealPlan = await MealPlan.findByPk(userId);
-        
-    //     if (mealPlan && mealPlan.meals) {
+    public static async getMealPlan(userId: string): Promise<MealPlan[]> {
+        try {
+            return MealPlan.findAll({
+                where: { userId },
+                include: ['meals', 'nutrients']
+            });
 
-    //         return ({
-    //             userId: mealPlan?.userId,
-    //             meals: mealPlan?.meals?.map(mp => 
-    //                 ({
-    //                     id: mp.id,
-    //                     title: mp.title,
-    //                     imageType: mp.imageType,
-    //                     readyInMinutes: mp.readyInMinutes,
-    //                     servings: mp.servings,
-    //                     sourceUrl: mp.sourceUrl
-    //                 }))
-    //         });
-    //     }
-    //     return null;
-    // }
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
+    }
+
+
 }
