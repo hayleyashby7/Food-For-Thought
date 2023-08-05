@@ -37,8 +37,8 @@ export const Router: React.FC = () => {
           path="dietinput"
           element={<DietInput onDietSelect={() => ""} />}
         />
+        <Route path="removeingredient" element={<RemoveIngredient />} />
       </Route>
-      <Route path="removeingredient" element={<RemoveIngredient />} />
     </Routes>
   );
 };
