@@ -9,7 +9,7 @@ jest.mock("./nav", () => {
   };
 });
 
-jest.mock("../login_form/login_form", () => {
+jest.mock("../login/loginForm", () => {
   return {
     __esModule: true,
     default: () => <div>Mock LoginForm</div>,
