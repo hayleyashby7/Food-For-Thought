@@ -1,26 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const HealthPage = () => {
-  const [apiStatus, setApiStatus] = useState("Checking status...");
-
-  useEffect(() => {
-    fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
-        import.meta.env.VITE_SPOONACULAR_API_KEY
-      }`
-    )
-      .then((response) => {
-        if (response.ok) {
-          setApiStatus("The API is up and running!");
-        } else {
-          setApiStatus("The API seems to be down.");
-        }
-      })
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      .catch((_error) => {
-        setApiStatus("The API is down or not responding.");
-      });
-  }, []);
+  const [apiStatus] = useState("Loading...");
 
   return (
     <div className="min-h-screen flex justify-center bg-yellow-100">
