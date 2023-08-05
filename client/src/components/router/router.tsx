@@ -9,6 +9,7 @@ import Signup from "../login_form/signup";
 import HealthPage from "../health_page/health_page";
 import DietInput from "../start_planning/DietInput";
 import CalorieInput from "../start_planning/CalorieInput";
+import RemoveIngredient from "../start_planning/RemoveIngredient";
 
 export const Router: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ export const Router: React.FC = () => {
           element={<DietInput onDietSelect={() => ""} />}
         />
       </Route>
+      <Route path="removeingredient" element={<RemoveIngredient />} />
     </Routes>
   );
 };
