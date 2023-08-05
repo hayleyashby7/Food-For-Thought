@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../providers/MealPlannerStore";
 
 const RemoveIngredient: React.FC = () => {
+  const { mealPlannerData, setMealPlannerData } = useContext(Context);
+  console.log("mealPlannerData", mealPlannerData);
+
   const [ingredient, setingredient] = useState("");
   const navigate = useNavigate();
 
@@ -14,6 +18,8 @@ const RemoveIngredient: React.FC = () => {
     // Handle form submission here (e.g., save the calorie value to state or send data to backend)
     console.log("ingredient:", ingredient);
   };
+
+  // fetch('url/haga?calories=mealPlannerData.caloriesANDdiet=mealplanner.')
 
   return (
     <div className="p-4 bg-white">
