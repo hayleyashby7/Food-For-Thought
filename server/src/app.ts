@@ -1,3 +1,5 @@
+import https from 'https';
+import { key, cert } from './helpers/ssl_helper';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -22,6 +24,9 @@ if (process.env.NODE_ENV === 'development') {
 	console.log('Running in development mode');
 	app.use(morgan('dev'));
 }
+
+// Setup https server
+export const server = https.createServer({ key, cert }, app);
 
 // Routes
 app.get('/', (req, res) => res.send('Food for thought API'));

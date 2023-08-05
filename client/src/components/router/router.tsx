@@ -4,7 +4,7 @@ import Home from "../home/home";
 import StartPlanning from "../start_planning/start_planning";
 import NotFound from "../not_found/not_found";
 import StartButton from "../start_planning/StartButton";
-import LoginForm from "../login_form/login_form";
+import LoginForm from '../login/loginForm';
 import Signup from "../login_form/signup";
 import HealthPage from "../health_page/health_page";
 
