@@ -12,7 +12,7 @@ const DietInput: React.FC<DietInputProps> = ({ onDietSelect }) => {
   const handleDietSelect = (diet: string) => {
     setSelectedDiet(diet);
     onDietSelect(diet);
-    navigate("/calorieinput");
+    navigate("/removeingredient");
   };
 
   return (
