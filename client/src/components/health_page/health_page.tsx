@@ -4,18 +4,22 @@ const HealthPage = () => {
   const [apiStatus, setApiStatus] = useState("Checking status...");
 
   useEffect(() => {
-    fetch(`https://localhost:3000/api/health`)
-      .then((response) => {
-        if (response.ok) {
+    const checkAPIHealth = async () => {
+      try {
+        const response = await fetch(`https://localhost:3000/api/health`);
+
+        if (response.status === 200) {
           setApiStatus("The API is up and running!");
         } else {
           setApiStatus("The API seems to be down.");
         }
-      })
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      .catch((_error) => {
+      } catch (error) {
+        console.error("Error fetching API health:", error);
         setApiStatus("The API is down or not responding.");
-      });
+      }
+    };
+
+    checkAPIHealth();
   }, []);
 
   return (
@@ -24,15 +28,14 @@ const HealthPage = () => {
         <h1 className="text-lg sm:text-base md:text-lg lg:text-xl font-bold mb-2 text-red-800 text-center sm:text-left">
           Health Page
         </h1>
-        <p className="font-bold text-2x1  text-red-800 text-center sm:text-left">
+        <p className="font-bold text-red-800 text-center sm:text-left">
           Status of Spoonacular API:
         </p>
-        <br />
         <p
           className={
             apiStatus.startsWith("The API is up")
-              ? "text-green-800 font-bold text-center sm:text-left"
-              : "text-red-600 font-bold text-center sm:text-left"
+              ? "text-green-800 font-bold text-center sm:text-left m-4"
+              : "text-red-600 font-bold text-center sm:text-left m-4"
           }
         >
           {apiStatus}
@@ -41,4 +44,5 @@ const HealthPage = () => {
     </div>
   );
 };
+
 export default HealthPage;

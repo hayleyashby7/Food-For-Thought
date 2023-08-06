@@ -13,7 +13,9 @@ function MealPlanGenerator() {
   const { id } = useUserContext();
 
   useEffect(() => {
-    fetch("/api/mealplan?calories=2000&diet=vegetarian&exclude=shellfish")
+    fetch(
+      "https://localhost:3000/api/mealplan?calories=2000&diet=vegetarian&exclude=shellfish"
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Server responded with ${response.status}`);
