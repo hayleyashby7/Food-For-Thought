@@ -20,17 +20,17 @@ const DietInput: React.FC<DietInputProps> = ({ onDietSelect }) => {
     navigate("/removeingredient");
   };
 
-  const [dietOptions, setdietOptions] = useState(["apple", "lejuice", "foo"]);
+  const [dietOptions, setdietOptions] = useState([]);
 
-  // useEffect(() => {
-  // const fetchData = async () => {
-  //  const data = await fetch("localhost");
-  // data.json()
-  // setdietOptions(data);
-  //  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch("localhost:3000/api/diets");
 
-  // fetchData();
-  // });
+      setdietOptions(await data.json());
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="flex flex-col items-center">
