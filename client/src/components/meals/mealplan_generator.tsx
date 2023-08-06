@@ -10,6 +10,7 @@ function MealPlanGenerator() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState("");
+  //const [imageUrl, setImageUrl] = useState("");
   const { id } = useUserContext();
 
   useEffect(() => {
@@ -70,14 +71,14 @@ function MealPlanGenerator() {
 
   return (
     <div className="bg-yellow-100">
-      <div className="border-2 border-orange-400 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {meals.map((meal) => (
           <div
             key={meal.id}
-            className="rounded overflow-hidden shadow-md bg-white p-4"
+            className="rounded overflow:auto shadow-md bg-yellow-200 p-4 border-4 border-orange-400 h-96"
           >
             <img
-              src={`https://spoonacular.com/recipeImages/${meal.id}-${meal.imageType}`}
+              src={`https://spoonacular.com/recipeImages/${meal.id}-240x150.${meal.imageType}`}
               alt={meal.title}
               className="w-full object-cover h-48"
             />
@@ -90,7 +91,7 @@ function MealPlanGenerator() {
                   href={meal.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
+                  className="text-blue-500 hover:underline font bold"
                 >
                   See Recipe
                 </a>
@@ -100,20 +101,23 @@ function MealPlanGenerator() {
         ))}
       </div>
 
-      <div className="mt-6">
-        <h3>Nutritional Information:</h3>
-        <p>Calories: {nutrients?.calories}</p>
-        <p>Protein: {nutrients?.protein}g</p>
-        <p>Fat: {nutrients?.fat}g</p>
-        <p>Carbohydrates: {nutrients?.carbohydrates}g</p>
+      <div className="flex mt-4 items-center gap-2">
+        <div className="border-4 border-orange-400 w-64">
+          <h3 className="font-bold text-green-600">Nutritional Information:</h3>
+          <p>Calories: {nutrients?.calories}</p>
+          <p>Protein: {nutrients?.protein}g</p>
+          <p>Fat: {nutrients?.fat}g</p>
+          <p>Carbohydrates: {nutrients?.carbohydrates}g</p>
+        </div>
+        <div>
+          <button
+            onClick={saveMealPlan}
+            className="bg-green-600 text-black p-2 rounded hover:bg-green-800 w-24"
+          >
+            Save
+          </button>
+        </div>
       </div>
-
-      <button
-        onClick={saveMealPlan}
-        className="mt-4 bg-green-600 text-black p-2 rounded hover:bg-green-800"
-      >
-        Save
-      </button>
       {successMessage && (
         <div className="text-green-500 mt-4">{successMessage}</div>
       )}

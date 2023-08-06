@@ -16,3 +16,29 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* This styles the footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; /* This ensures the footer is on top of other content */
+}
+
+/* This adds padding to the main content to account for the footer */
+.main-content {
+  padding-bottom: 60px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
