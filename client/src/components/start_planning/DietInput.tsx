@@ -1,22 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Context } from '../../providers/MealPlannerStore';
+import React, { useEffect, useState } from 'react';
+import Select from '../form_inputs/Select';
 
 interface DietInputProps {
-	onDietSelect: (diet: string) => void;
+	inputChanged: (value: string, valid: boolean) => void;
 }
 
-const DietInput: React.FC<DietInputProps> = ({ onDietSelect }) => {
-	const { mealPlannerData, setMealPlannerData } = useContext(Context);
+const DietInput: React.FC<DietInputProps> = ({ inputChanged }) => {
 	const [dietOptions, setdietOptions] = useState([]);
-	const navigate = useNavigate();
-
-	console.log('mealPlannerData:', mealPlannerData);
 
 	const handleDietSelect = (diet: string) => {
-		onDietSelect(diet);
-		setMealPlannerData((data) => ({ ...data, dietOption: diet }));
-		navigate('/removeingredient');
+		diet === '' ? inputChanged(diet, false) : inputChanged(diet, true);
 	};
 
 	useEffect(() => {
@@ -29,16 +22,7 @@ const DietInput: React.FC<DietInputProps> = ({ onDietSelect }) => {
 		fetchData();
 	}, []);
 
-	return (
-		<div className='flex flex-col items-center'>
-			<h2 className='text-2xl font-semibold mb-4 '>Please Choose Your Type of Diet:</h2>
-			<select onChange={(event) => handleDietSelect(event.target.value)}>
-				{dietOptions.map((dietOption) => (
-					<option key={dietOption}>{dietOption}</option>
-				))}
-			</select>
-		</div>
-	);
+	return <Select name='diet' value='' label='Please Choose Your Type of Diet' onInput={handleDietSelect} options={dietOptions} />;
 };
 
 export default DietInput;
