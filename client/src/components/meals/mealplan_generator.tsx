@@ -1,27 +1,8 @@
 import { useState, useEffect } from "react";
 import { useUserContext } from "../../hooks/useUserContext";
-
-type Meal = {
-  id: number;
-  imageType: string;
-  title: string;
-  readyInMinutes: number;
-  servings: number;
-  sourceUrl: string;
-};
-
-type Nutrients = {
-  calories: number;
-  protein: number;
-  fat: number;
-  carbohydrates: number;
-};
-
-type MealPlanResponse = {
-  status: number;
-  meals: Meal[];
-  nutrients: Nutrients;
-};
+import { Meal } from "../../types/meal_data.types";
+import { Nutrients } from "../../types/nutrients_data.types";
+import { MealPlanResponse } from "../../types/mealplan_response.types";
 
 function MealPlanGenerator() {
   const [meals, setMeals] = useState<Meal[]>([]);
@@ -32,8 +13,17 @@ function MealPlanGenerator() {
   const { id } = useUserContext();
 
   useEffect(() => {
-    fetch("/api/mealplan?calories=2000&diet=vegetarian")
-      .then((response) => response.json())
+    fetch("/api/mealplan?calories=2000&diet=vegetarian&exclude=shellfish")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Server responded with ${response.status}`);
+        }
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Received non-JSON response from server.");
+        }
+        return response.json();
+      })
       .then((data: MealPlanResponse) => {
         setMeals(data.meals);
         setNutrients(data.nutrients);
@@ -46,7 +36,7 @@ function MealPlanGenerator() {
   }, []);
 
   const saveMealPlan = () => {
-    fetch("http://localhost:3000/api/mealplan", {
+    fetch("https://localhost:3000/api/mealplan", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,8 +67,8 @@ function MealPlanGenerator() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="bg-yellow-100">
+      <div className="border-2 border-orange-400 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {meals.map((meal) => (
           <div
             key={meal.id}
@@ -118,7 +108,7 @@ function MealPlanGenerator() {
 
       <button
         onClick={saveMealPlan}
-        className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+        className="mt-4 bg-green-600 text-black p-2 rounded hover:bg-green-800"
       >
         Save
       </button>

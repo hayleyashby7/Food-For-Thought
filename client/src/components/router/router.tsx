@@ -4,8 +4,9 @@ import Home from "../home/home";
 import StartPlanning from "../start_planning/start_planning";
 import NotFound from "../not_found/not_found";
 import StartButton from "../start_planning/StartButton";
-import LoginForm from '../login/loginForm';
+import LoginForm from "../login/loginForm";
 import HealthPage from "../health_page/health_page";
+import MealPlanGenerator from "../meals/mealplan_generator";
 
 export const Router: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ export const Router: React.FC = () => {
         <Route path="startplanning" element={<StartPlanning />} />
         <Route path="login" element={<LoginForm />} />
         <Route path="health" element={<HealthPage />} />
+        <Route path="mealplangenerator" element={<MealPlanGenerator />} />
         <Route
           path="startbutton"
           element={
