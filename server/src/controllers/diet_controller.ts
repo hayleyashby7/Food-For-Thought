@@ -7,7 +7,8 @@ export const getAllDiets = async (req: Request, res: Response, next: NextFunctio
 		if (!diets) {
 			return res.status(404).json({ message: 'Diets not found' });
 		}
-		res.status(200).json(diets);
+		const dietsResponse = diets.map((diet) => diet.diet);
+		res.status(200).json(dietsResponse);
 	} catch (error) {
 		next(error);
 	}
