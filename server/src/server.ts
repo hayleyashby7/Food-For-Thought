@@ -1,7 +1,6 @@
-import server from './app';
+import Database from './database/database';
 import { config } from 'dotenv';
-import sequelize from './database/database';
-import { syncDatabase } from './database/databaseHelper';
+import server from './app';
 
 // Load environment variables
 config({ path: './config/config.env' });
@@ -9,20 +8,11 @@ config({ path: './config/config.env' });
 // Set server port
 const serverPort = process.env.PORT || 3000;
 
-// Connect to database
 const connect = async () => {
-	console.log('Connecting to database...');
-	try {
-		await sequelize.authenticate();
-		console.log('Connection has been established successfully.');
-	} catch (error) {
-		console.error('Unable to connect to the database:', error);
-	}
+  await Database.initialize(process.env.DATABASE_URL as string);
 };
-connect().then(async () => await syncDatabase());
 
-
-// Listen for requests
+connect();
 server.listen(serverPort, () => {
-	console.log(`Started server on port ${serverPort}`);
+  console.log(`Started server on port ${serverPort}`);
 });

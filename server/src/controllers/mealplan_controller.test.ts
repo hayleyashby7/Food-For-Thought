@@ -1,6 +1,9 @@
 import request from 'supertest';
 import app from '../app';
 import { server } from '../mocks/server';
+import { MealPlanService } from '../services/mealPlanService';
+import Database from '../database/database';
+
 
 beforeAll(() =>
 	server.listen({
