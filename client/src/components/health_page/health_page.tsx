@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const HealthPage = () => {
   const [apiStatus, setApiStatus] = useState("Checking status...");
+
   useEffect(() => {
     fetch(`https://localhost:3000/api/health`)
       .then((response) => {
