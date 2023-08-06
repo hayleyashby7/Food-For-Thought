@@ -36,6 +36,12 @@ export const Router: React.FC = () => {
           element={<DietInput onDietSelect={() => ""} />}
         />
         <Route path="removeingredient" element={<RemoveIngredient />} />
+        <Route path="calorieinput" element={<CalorieInput />} />
+        <Route
+          path="dietinput"
+          element={<DietInput onDietSelect={() => ""} />}
+        />
+        <Route path="removeingredient" element={<RemoveIngredient />} />
       </Route>
     </Routes>
   );
