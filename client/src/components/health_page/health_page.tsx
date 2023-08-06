@@ -1,7 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const HealthPage = () => {
-  const [apiStatus] = useState("Loading...");
+  const [apiStatus, setApiStatus] = useState("Checking status...");
+  useEffect(() => {
+    fetch(`https://localhost:3000/api/health`)
+      .then((response) => {
+        if (response.ok) {
+          setApiStatus("The API is up and running!");
+        } else {
+          setApiStatus("The API seems to be down.");
+        }
+      })
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      .catch((_error) => {
+        setApiStatus("The API is down or not responding.");
+      });
+  }, []);
 
   return (
     <div className="min-h-screen flex justify-center bg-yellow-100">
