@@ -7,12 +7,12 @@ function App() {
 	return (
 		<>
 			<UserContext>
-        <ContextProvider>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-          </ContextProvider>
-			</UserContext>      
+				<ContextProvider>
+					<BrowserRouter>
+						<Router />
+					</BrowserRouter>
+				</ContextProvider>
+			</UserContext>
 		</>
 	);
 }
