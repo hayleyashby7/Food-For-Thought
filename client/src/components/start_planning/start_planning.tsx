@@ -1,5 +1,5 @@
 import carrotWordCloud from '../../assets/images/CarrotWordCloud.jpg';
-import StartButton from './StartButton';
+import StartButton from '../form_inputs/StartButton';
 import { useNavigate } from 'react-router-dom';
 
 const StartPlanning: React.FC = () => {
@@ -13,7 +13,7 @@ const StartPlanning: React.FC = () => {
 				<p className='text-center text-2xl'>
 					<strong> Start Planning your meals here...</strong>
 				</p>
-				<StartButton onClick={() => navigate('/calorieinput')} label='Start Planning' />
+				<StartButton onClick={() => navigate('/mealForm')} label='Start Planning' />
 			</div>
 		</div>
 	);
