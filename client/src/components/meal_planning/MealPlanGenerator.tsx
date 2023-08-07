@@ -1,41 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 //import { useUserContext } from "../../hooks/useUserContext";
-import { Meal } from '../../types/meal_data.type';
-import { Nutrients } from '../../types/nutrients_data.type';
 import { MealPlanResponse } from '../../types/mealplan_response.type';
 
-function MealPlanGenerator() {
-	const [meals, setMeals] = useState<Meal[]>([]);
-	const [nutrients, setNutrients] = useState<Nutrients | null>(null);
-	const [loading, setLoading] = useState(true);
+interface MealPlanGeneratorProps {
+	mealResponse: MealPlanResponse;
+}
+
+export const MealPlanGenerator: React.FC<MealPlanGeneratorProps> = ({ mealResponse }) => {
+	const [meals] = useState(mealResponse.meals);
+	const [nutrients] = useState(mealResponse.nutrients);
 	const [error, setError] = useState<string | null>(null);
 	const [successMessage, setSuccessMessage] = useState('');
 	//const { id } = useUserContext();
 
-	useEffect(() => {
-		fetch('https://localhost:3000/api/mealplan?calories=2000&diet=vegetarian&exclude=shellfish')
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error(`Server responded with ${response.status}`);
-				}
-				const contentType = response.headers.get('content-type');
-				if (!contentType || !contentType.includes('application/json')) {
-					throw new Error('Received non-JSON response from server.');
-				}
-				return response.json();
-			})
-			.then((data: MealPlanResponse) => {
-				setMeals(data.meals);
-				setNutrients(data.nutrients);
-				setLoading(false);
-			})
-			.catch((err: Error) => {
-				setError(err.message);
-				setLoading(false);
-			});
-	}, []);
-
-	const saveMealPlan = async () => {
+	const saveMealPlan = async (mealResponse: MealPlanResponse) => {
 		try {
 			const hardcodedUserId = '44d1632d-9795-4696-932d-a8a99c251fda'; // Hardcoded userId for testing purposes
 
@@ -46,8 +24,8 @@ function MealPlanGenerator() {
 				},
 				body: JSON.stringify({
 					userId: hardcodedUserId, // Use hardcoded userId here
-					meals: meals,
-					nutrients: nutrients,
+					meals: mealResponse.meals,
+					nutrients: mealResponse.nutrients,
 				}),
 			});
 
@@ -71,9 +49,6 @@ function MealPlanGenerator() {
 			}
 		}
 	};
-
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error: {error}</p>;
 
 	return (
 		<div className='bg-yellow-100'>
@@ -104,7 +79,7 @@ function MealPlanGenerator() {
 					<p>Carbohydrates: {nutrients?.carbohydrates}g</p>
 				</div>
 				<div>
-					<button onClick={saveMealPlan} className='bg-green-600 text-black p-2 rounded hover:bg-green-800 w-24'>
+					<button onClick={() => saveMealPlan(mealResponse)} className='bg-green-600 text-black p-2 rounded hover:bg-green-800 w-24'>
 						Save
 					</button>
 				</div>
@@ -113,6 +88,6 @@ function MealPlanGenerator() {
 			{error && <div className='text-red-500 mt-4'>{error}</div>}
 		</div>
 	);
-}
+};
 
 export default MealPlanGenerator;
