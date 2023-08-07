@@ -1,14 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from '../layout/layout';
 import Home from '../home/home';
-import StartPlanning from '../start_planning/start_planning';
+import StartPlanning from '../meal_planning/StartPlanning';
 import NotFound from '../not_found/not_found';
-import StartButton from '../form_inputs/StartButton';
 import LoginForm from '../login/loginForm';
 import HealthPage from '../health_page/health_page';
-import DietInput from '../start_planning/DietInput';
-import RemoveIngredient from '../start_planning/RemoveIngredient';
-import MealForm from '../start_planning/mealPlanForm';
 
 export const Router: React.FC = () => {
 	return (
@@ -18,21 +14,7 @@ export const Router: React.FC = () => {
 				<Route path='startplanning' element={<StartPlanning />} />
 				<Route path='login' element={<LoginForm />} />
 				<Route path='health' element={<HealthPage />} />
-				<Route
-					path='startbutton'
-					element={
-						<StartButton
-							onClick={function (): void {
-								throw new Error('Function not implemented.');
-							}}
-							label={'Start Planning My Meal'}
-						/>
-					}
-				/>
 				<Route path='*' element={<NotFound />} />
-				<Route path='mealForm' element={<MealForm />} />
-				<Route path='dietinput' element={<DietInput onDietSelect={() => ''} />} />
-				<Route path='removeingredient' element={<RemoveIngredient />} />
 			</Route>
 		</Routes>
 	);

@@ -4,13 +4,11 @@ interface ButtonProps {
 	className?: string;
 }
 
-const StartButton: React.FC<ButtonProps> = ({ onClick, label, className }) => {
+const StartButton: React.FC<ButtonProps> = ({ onClick, label }) => {
 	return (
-		<div className='flex justify-center items-center h-screen'>
-			<button className={`px-20 py-10 font-semibold rounded-md  text-white bg-orange-500 hover:bg-orange-600 ${className}`} onClick={onClick}>
-				{label}
-			</button>
-		</div>
+		<button className={`px-10 py-5 font-semibold rounded-md  text-white bg-orange-500 hover:bg-orange-600`} onClick={onClick}>
+			{label}
+		</button>
 	);
 };
 
