@@ -13,6 +13,7 @@ const serverPort = process.env.PORT || 3000;
 const connect = async () => {
   await FoodForThoughtDatabase.initialize(process.env.DATABASE_URL as string);
 };
+connect();
 
 // Setup https server
 const server = https.createServer({ key, cert }, app);
