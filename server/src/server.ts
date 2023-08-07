@@ -1,9 +1,7 @@
-import app from './app';
+import server from './app';
 import { config } from 'dotenv';
 import sequelize from './database/database';
 import { syncDatabase } from './database/databaseHelper';
-import https from 'https';
-import { key, cert } from './helpers/ssl_helper';
 
 // Load environment variables
 config({ path: './config/config.env' });
@@ -23,8 +21,6 @@ const connect = async () => {
 };
 connect().then(async () => await syncDatabase());
 
-// Setup https server
-const server = https.createServer({ key, cert }, app);
 
 // Listen for requests
 server.listen(serverPort, () => {
