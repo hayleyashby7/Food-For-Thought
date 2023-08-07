@@ -23,10 +23,18 @@ export const MealForm: React.FC<MealFormProps> = ({ mealRequest, setMealRequest,
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
 		event.preventDefault();
+		const { calories, diet, remove } = mealRequest;
+
+		const buildQueryString = () => {
+			let queryString = `calories=${calories}`;
+			diet ? (queryString += `&diet=${diet}`) : null;
+			remove ? (queryString += `&exclude=${remove}`) : null;
+			return queryString;
+		};
 
 		const fetchData = async () => {
 			try {
-				const response = await fetch('https://localhost:3000/api/mealplan?calories=2000&diet=vegetarian&exclude=shellfish');
+				const response = await fetch(`https://localhost:3000/api/mealplan?${buildQueryString()}`);
 				if (!response.ok) {
 					throw new Error(`Server responded with ${response.status}`);
 				}
