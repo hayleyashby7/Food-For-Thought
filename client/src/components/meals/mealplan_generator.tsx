@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useUserContext } from "../../hooks/useUserContext";
+//import { useUserContext } from "../../hooks/useUserContext";
 import { Meal } from "../../types/meal_data.types";
 import { Nutrients } from "../../types/nutrients_data.types";
 import { MealPlanResponse } from "../../types/mealplan_response.types";
@@ -10,8 +10,7 @@ function MealPlanGenerator() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState("");
-  //const [imageUrl, setImageUrl] = useState("");
-  const { id } = useUserContext();
+  //const { id } = useUserContext();
 
   useEffect(() => {
     fetch(
@@ -38,32 +37,43 @@ function MealPlanGenerator() {
       });
   }, []);
 
-  const saveMealPlan = () => {
-    fetch("https://localhost:3000/api/mealplan", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: id,
-        meals: meals,
-        nutrients: nutrients,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((data) => {
-            throw new Error(data.error || "Failed to save meal plan.");
-          });
-        }
-        return response.json();
-      })
-      .then(() => {
-        setSuccessMessage("Meal plan saved successfully!");
-      })
-      .catch((err: Error) => {
-        setError(err.message);
+  const saveMealPlan = async () => {
+    try {
+      const hardcodedUserId = "44d1632d-9795-4696-932d-a8a99c251fda"; // Hardcoded userId for testing purposes
+
+      const response = await fetch("https://localhost:3000/api/mealplan", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: hardcodedUserId, // Use hardcoded userId here
+          meals: meals,
+          nutrients: nutrients,
+        }),
       });
+
+      if (!response.ok) {
+        const data = await response.json();
+        if (data && data.details) {
+          const errorMessage = data.details
+            .map((detail: { message: string }) => detail.message)
+            .join(" ");
+          throw new Error(errorMessage);
+        }
+        throw new Error(response.statusText || "Failed to save meal plan.");
+      }
+
+      await response.json();
+
+      setSuccessMessage("Meal plan saved successfully!");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    }
   };
 
   if (loading) return <p>Loading...</p>;
