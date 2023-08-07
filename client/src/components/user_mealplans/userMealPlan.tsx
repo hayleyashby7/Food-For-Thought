@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { MealPlan } from "../../types/mealplan_response.type";
 import { getUserMealPlans } from "./getUserMealPlans";
 import { MealPlanList } from "./userMealPlanList";
-import { useUserContext } from "../../hooks/useUserContext";
 
 
 export function UserMealPlanPage() {
@@ -24,7 +23,7 @@ export function UserMealPlanPage() {
         );
     } return (
         <div className="w-10/12 mx-auto mt-6">
-            <h2 className="text-xl text-red-900 font-bold text-center">Meals</h2>
+            <h2 className="text-3xl text-red-900 font-bold text-center mb-8">Meal Plans</h2>
             <MealPlanList mealPlans={meals} />
         </div>
     );
