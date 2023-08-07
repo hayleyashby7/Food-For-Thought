@@ -18,6 +18,7 @@ const Nav: React.FC = () => (
 			<Nav_Item linkTo='/' text='Home' />
 			<Nav_Item linkTo='/startplanning' text='Start Planning' />
 			<Nav_Item linkTo='/login' text='Sign In/Up' />
+			<Nav_Item linkTo='/userMealPlan' text='Saved Meal Plans' />
 		</ul>
 	</nav>
 );

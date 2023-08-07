@@ -6,3 +6,9 @@ export type MealPlanResponse = {
 	meals: Meal[];
 	nutrients: Nutrients;
 };
+
+export type MealPlan = {
+	userId: string;
+	meals: Meal[];
+	nutrients: Nutrients;
+}
