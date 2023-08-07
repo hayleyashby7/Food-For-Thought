@@ -67,8 +67,10 @@ class FoodForThoughtDatabase {
       console.debug('Seeding database if necessary');
       try {
         const diets = await Diet.findAll();
-        if (diets.length === 0) {
-          await Diet.bulkCreate(DIET.map(diet => ({ diet })));
+        if (diets.length !== DIET.length) {
+          DIET.forEach(async (diet) => {
+            if (!diets.find((dietsObj) => dietsObj.diet === diet)) await Diet.create({ diet });
+          });
           console.log('Database has been seeded');
         } else {
           console.log('Database has already been seeded');
@@ -77,6 +79,7 @@ class FoodForThoughtDatabase {
         console.error('Issue seeding database', error);
       }
     }
+    
   }
 
 export default FoodForThoughtDatabase;

@@ -5,10 +5,8 @@ import { MealPlanService } from '../services/mealPlanService';
 import { MealPlanData, UserMealPlanRequest, mealSchema, userMealPlanRequestSchema } from '../types/mealdataController.types';
 import { MealPlanModelConverter } from '../converters/mealPlanConverter';
 
-
-
 export const getMealPlan = async (req: Request, res: Response, next: NextFunction) => {
-	const request = validMealPlanRequest(req.query.calories as string, req.query.diet as string, req.query.exclude as string);
+	const request = validMealPlanRequest(req.query.calories as string, req.query.diet as string);
 	if (request.valid === false) {
 		return res.status(400).json({ error: request.error });
 	}

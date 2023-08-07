@@ -1,38 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import Select from '../form_inputs/Select';
 
-const diets = ["vegetarians", "vegan", "gluten-free", "omnivore"];
+interface DietInputProps {
+	inputChanged: (value: string, valid: boolean) => void;
+}
 
-const DietInput: React.FC = () => {
-  const [selectedDiet, setSelectedDiet] = useState<string>("");
+const DietInput: React.FC<DietInputProps> = ({ inputChanged }) => {
+	const [dietOptions, setdietOptions] = useState([]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedDiet(event.target.value);
-  };
+	const handleDietSelect = (diet: string) => {
+		diet === '' ? inputChanged(diet, false) : inputChanged(diet, true);
+	};
 
-  return (
-    <div className="p-4">
-      <label
-        htmlFor="diet"
-        className="block text-lg font-medium text-black-700 mb-2"
-      >
-        Please Choose Your Type Of Diet:
-      </label>
-      <select
-        id="diet"
-        name="diet"
-        value={selectedDiet}
-        onChange={handleInputChange}
-        className="block w-full p-10 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-orange-500 focus:border-orange-500 bg-orange-500 hover:bg-orange-600"
-      >
-        <option value="">Select a diet</option>
-        {diets.map((diet) => (
-          <option key={diet} value={diet}>
-            {diet}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+	useEffect(() => {
+		const fetchData = async () => {
+			const response = await fetch('http://localhost:3000/api/diets');
+			const data = await response.json();
+			setdietOptions(data);
+		};
+
+		fetchData();
+	}, []);
+
+	return <Select name='diet' value='' label='Please Choose Your Type of Diet' onInput={handleDietSelect} options={dietOptions} />;
 };
 
 export default DietInput;
