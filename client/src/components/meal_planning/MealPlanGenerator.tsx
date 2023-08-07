@@ -1,5 +1,6 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { useState } from "react";
-//import { useUserContext } from "../../hooks/useUserContext";
+import { useUserContext } from "../../hooks/useUserContext";
 import { MealPlanResponse } from "../../types/mealplan_response.type";
 
 interface MealPlanGeneratorProps {
@@ -13,25 +14,30 @@ export const MealPlanGenerator: React.FC<MealPlanGeneratorProps> = ({
   const [nutrients] = useState(mealResponse.nutrients);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState("");
-  //const { id } = useUserContext();
+  const { id } = useUserContext();
 
   const saveMealPlan = async (mealResponse: MealPlanResponse) => {
     try {
-      const hardcodedUserId = "44d1632d-9795-4696-932d-a8a99c251fda"; // Hardcoded userId for testing purposes
-
       const response = await fetch("https://localhost:3000/api/mealplan", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: hardcodedUserId, // Use hardcoded userId here
+          userId: id,
           meals: mealResponse.meals,
           nutrients: mealResponse.nutrients,
         }),
       });
 
-      if (!response.ok) {
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.message) {
+          setSuccessMessage(data.message);
+        } else {
+          setSuccessMessage("Meal plan saved successfully!");
+        }
+      } else {
         const data = await response.json();
         if (data && data.details) {
           const errorMessage = data.details
@@ -41,10 +47,6 @@ export const MealPlanGenerator: React.FC<MealPlanGeneratorProps> = ({
         }
         throw new Error(response.statusText || "Failed to save meal plan.");
       }
-
-      await response.json();
-
-      setSuccessMessage("Meal plan saved successfully!");
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -65,7 +67,7 @@ export const MealPlanGenerator: React.FC<MealPlanGeneratorProps> = ({
             <img
               src={`https://spoonacular.com/recipeImages/${meal.id}-240x150.${meal.imageType}`}
               alt={meal.title}
-              className="w-full object-cover h-48"
+              className="object-cover h-48"
             />
             <div className="p-4">
               <h2 className="font-bold text-xl mb-2">{meal.title}</h2>
@@ -104,9 +106,9 @@ export const MealPlanGenerator: React.FC<MealPlanGeneratorProps> = ({
         </div>
       </div>
       {successMessage && (
-        <div className="text-green-500 mt-4">{successMessage}</div>
+        <div className="text-green-500 mt-4 font-bold">{successMessage}</div>
       )}
-      {error && <div className="text-red-500 mt-4">{error}</div>}
+      {error && <div className="text-red-500 mt-4 font-bold">{error}</div>}
     </div>
   );
 };
