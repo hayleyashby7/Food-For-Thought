@@ -1,6 +1,6 @@
 import { Model, DataTypes, InferAttributes, InferCreationAttributes, ForeignKey, Sequelize } from 'sequelize';
 import sequelize from '../database/database';
-import Database from '../database/database';
+import FoodForThoughtDatabase from '../database/database';
 
 export class Nutrients extends Model<InferAttributes<Nutrients>, InferCreationAttributes<Nutrients>> {
     declare id: number;
@@ -18,7 +18,7 @@ export class Nutrients extends Model<InferAttributes<Nutrients>, InferCreationAt
 export function initNutrientsModel(sequelize: Sequelize) {
     Nutrients.init(
         {
-            id: { type: DataTypes.INTEGER.UNSIGNED, autoIncrement: true, primaryKey: true },
+            id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
             calories: DataTypes.FLOAT,
             protein: DataTypes.FLOAT,
             fat: DataTypes.FLOAT,

@@ -1,7 +1,7 @@
 import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey, Sequelize } from 'sequelize';
 import sequelize from '../database/database'
 import { MealPlan } from './mealplan';
-import Database from '../database/database';
+import FoodForThoughtDatabase from '../database/database';
 
 export class Meal extends Model<InferAttributes<Meal>, InferCreationAttributes<Meal>>{
     declare id: CreationOptional<number>;

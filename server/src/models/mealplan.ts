@@ -2,7 +2,7 @@ import { Model, DataTypes, InferCreationAttributes, InferAttributes, CreationOpt
 import sequelize from '../database/database'
 import { Meal } from './meal';
 import { Nutrients } from './nutrients';
-import Database from '../database/database';
+import FoodForThoughtDatabase from '../database/database';
 
 
 export class MealPlan extends Model<InferAttributes<MealPlan>, InferCreationAttributes<MealPlan>> {

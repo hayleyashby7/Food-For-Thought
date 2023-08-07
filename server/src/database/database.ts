@@ -5,32 +5,36 @@ import { MealPlan, initMealPlanModel } from '../models/mealplan';
 import { Nutrients, initNutrientsModel } from '../models/nutrients';
 import { Diet, initDietModel } from '../models/diet';
 import { DIET } from '../types/diet.types';
+import sequelize from 'sequelize';
 
 
 // Load environment variables
 config({ path: './config/config.env' });
 
-class Database {
+class FoodForThoughtDatabase {
     private static sequelizeInstance: Sequelize;
   
     private constructor() {
       
     }
   
-    public static async initialize(connectionString: string): Promise<void> {
-      if (!Database.sequelizeInstance) {
-        Database.sequelizeInstance = new Sequelize(connectionString);
+    public static async initialize(connectionString: string, beforeSync?: (sequelize: Sequelize) => Promise<void>): Promise<void> {
+      if (!FoodForThoughtDatabase.sequelizeInstance) {
+        FoodForThoughtDatabase.sequelizeInstance =  new Sequelize(connectionString);
         try {
-            await Database.getSequelizeInstance().authenticate();
+            await FoodForThoughtDatabase.getSequelizeInstance().authenticate();
             console.log('Connection has been established successfully.');
         } catch (error) {
             console.error('Unable to connect to the database:', error);
             throw error;
         }
-        Database.initializeModels();
+        if(beforeSync){
+          await beforeSync(FoodForThoughtDatabase.getSequelizeInstance());
+        }
+
+        FoodForThoughtDatabase.initializeModels();       
         
-        
-        this.syncDatabase();
+        await this.syncDatabase();
       }
     }
   
@@ -42,19 +46,18 @@ class Database {
   }
 
     public static getSequelizeInstance(): Sequelize {
-      if (!Database.sequelizeInstance) {
+      if (!FoodForThoughtDatabase.sequelizeInstance) {
         throw new Error('Sequelize instance has not been initialized. Call Database.initialize(connectionString) first.');
       }
-      return Database.sequelizeInstance;
+      return FoodForThoughtDatabase.sequelizeInstance;
     }
 
     private static async syncDatabase() {
       console.debug('Syncing database');
       try {
-        await Database.getSequelizeInstance().drop({cascade:true});
-        await Database.getSequelizeInstance().sync();
+        await FoodForThoughtDatabase.getSequelizeInstance().sync();
         console.log('Database has been synced');
-        await Database.seedDatabase();
+        await FoodForThoughtDatabase.seedDatabase();
       } catch (error) {
         console.error('Issue syncing database', error);
       }
@@ -65,9 +68,7 @@ class Database {
       try {
         const diets = await Diet.findAll();
         if (diets.length === 0) {
-          DIET.forEach(async (diet) => {
-            await Diet.create({ diet });
-          });
+          await Diet.bulkCreate(DIET.map(diet => ({ diet })));
           console.log('Database has been seeded');
         } else {
           console.log('Database has already been seeded');
@@ -78,4 +79,4 @@ class Database {
     }
   }
 
-export default Database;
+export default FoodForThoughtDatabase;

@@ -43,7 +43,7 @@ export const getUserMealPlan = async (req: Request, res: Response, next: NextFun
 	try {
 		let userRequestValidationResult: UserMealPlanRequest;
 		try {
-			userRequestValidationResult = await userMealPlanRequestSchema.validateAsync(req.body);
+			userRequestValidationResult = await userMealPlanRequestSchema.validateAsync(req.query);
 		} catch (error) {
 			return res.status(400).json({ error: error });
 		}

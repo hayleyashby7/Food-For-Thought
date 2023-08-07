@@ -1,5 +1,5 @@
 
-import Database from '../database/database';
+import FoodForThoughtDatabase from '../database/database';
 import sequelize from '../database/database';
 import { Meal } from '../models/meal';
 import { MealPlan } from '../models/mealplan';
@@ -9,7 +9,7 @@ import { MealPlanData } from '../types/mealdataController.types';
 export class MealPlanService {
     public static async createMealPlan(mealPlanData: MealPlanData): Promise<void> {
         try {
-            const transaction = await Database.getSequelizeInstance().transaction();
+            const transaction = await FoodForThoughtDatabase.getSequelizeInstance().transaction();
             try {
                 const nutrients = await Nutrients.create(mealPlanData.nutrients)
                 const mealPlan = await MealPlan.create({

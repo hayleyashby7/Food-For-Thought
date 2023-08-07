@@ -1,4 +1,4 @@
-import Database from './database/database';
+import FoodForThoughtDatabase from './database/database';
 import { config } from 'dotenv';
 import server from './app';
 
@@ -9,7 +9,7 @@ config({ path: './config/config.env' });
 const serverPort = process.env.PORT || 3000;
 
 const connect = async () => {
-  await Database.initialize(process.env.DATABASE_URL as string);
+  await FoodForThoughtDatabase.initialize(process.env.DATABASE_URL as string);
 };
 
 connect();
