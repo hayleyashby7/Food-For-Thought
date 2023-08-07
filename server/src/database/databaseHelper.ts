@@ -1,16 +1,17 @@
-import { Meal } from '../models/meal';
-import { MealPlan } from '../models/mealplan';
-import { Nutrients } from '../models/nutrients';
+import { Meal } from "../models/meal";
+import { MealPlan } from "../models/mealplan";
+import { Nutrients } from "../models/nutrients";
 import { Diet } from '../models/diet';
 import { DIET } from '../types/diet.types';
+
 
 export async function syncDatabase() {
 	console.debug('Syncing database');
 	try {
-		await Nutrients.sync({ alter: true });
-		await MealPlan.sync({ alter: true });
-		await Meal.sync({ alter: true });
-		await Diet.sync({ alter: true });
+		await Nutrients.sync({alter:true});
+		await MealPlan.sync({alter:true});
+		await Meal.sync({alter:true});		
+		await Diet.sync({alter:true});
 		console.log('Database has been synced');
 		await seedDatabase();
 	} catch (error) {
@@ -22,9 +23,9 @@ async function seedDatabase() {
 	console.debug('Seeding database if necessary');
 	try {
 		const diets = await Diet.findAll();
-		if (diets.length !== DIET.length) {
+		if (diets.length === 0) {
 			DIET.forEach(async (diet) => {
-				if (!diets.find((dietsObj) => dietsObj.diet === diet)) await Diet.create({ diet });
+				await Diet.create({ diet });
 			});
 			console.log('Database has been seeded');
 		} else {
