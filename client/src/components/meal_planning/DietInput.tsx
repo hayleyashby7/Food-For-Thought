@@ -19,13 +19,12 @@ const DietInput: React.FC<DietInputProps> = ({ inputChanged }) => {
 			const response = await fetch('https://localhost:3000/api/diets');
 			const data = await response.json();
 			setdietOptions(data);
-			console.log(data);
 		};
 
 		fetchData();
 	}, []);
 
-	return <Select name='diet' value={diet} label='Please Choose Your Type of Diet' onInput={handleDietSelect} options={dietOptions} />;
+	return <Select name='diet' value={diet} label='Dietary Restrictions' onInput={handleDietSelect} options={dietOptions} />;
 };
 
 export default DietInput;

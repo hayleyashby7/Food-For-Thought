@@ -18,7 +18,7 @@ const CalorieInput: React.FC<CalorieInputProps> = ({ calories, inputChanged }) =
 			: undefined;
 	};
 
-	return <Input name='calorieInput' value={calories} label='Please Enter Your Daily Calories' onInput={inputChanged} validate={validateCaloriesInput} />;
+	return <Input name='calories' value={calories} label='Daily Calories' onInput={inputChanged} validate={validateCaloriesInput} />;
 };
 
 export default CalorieInput;

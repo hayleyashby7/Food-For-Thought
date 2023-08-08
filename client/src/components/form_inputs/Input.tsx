@@ -28,13 +28,13 @@ const Input: React.FC<InputProps> = ({ name, value, label, onInput, validate }) 
 	};
 
 	return (
-		<>
-			<div className='flex flex-col flex-nowrap m-2 gap-2'>
-				<label htmlFor={name}>{label}</label>
-				<input className='flex-2 font-semibold rounded-md' type={inputType} id={name} name={name} value={value} onChange={onChange} placeholder={label} />
-			</div>
+		<div className='flex flex-col mb-4 w-full'>
+			<label className='font-bold text-lg pl-1' htmlFor={name}>
+				{label}
+			</label>
+			<input className='border py-2 px-3 font-semibold rounded-md mb-1' type={inputType} id={name} name={name} value={value} onChange={onChange} placeholder={label} />
 			{errorMessage && <ErrorMessage message={errorMessage} />}
-		</>
+		</div>
 	);
 };
 
