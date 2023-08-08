@@ -1,7 +1,7 @@
 import { rest } from "msw";
 
 export const handlers = [
-  rest.get("localhost:3000/api/mealplan", (req, res, ctx) => {
+  rest.get("https://localhost:3000/api/mealplan", (req, res, ctx) => {
     const calories = req.url.searchParams.get("calories");
     const diet = req.url.searchParams.get("diet");
     const exclude = req.url.searchParams.get("exclude");
@@ -53,7 +53,7 @@ export const handlers = [
     }
   }),
 
-  rest.get("localhost:3000/api/mealplan", (req, res, ctx) => {
+  rest.get("https://localhost:3000/api/mealplan", (req, res, ctx) => {
     const calories = req.url.searchParams.get("calories");
     const diet = req.url.searchParams.get("diet");
 

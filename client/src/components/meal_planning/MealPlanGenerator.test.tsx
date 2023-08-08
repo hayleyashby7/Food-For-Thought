@@ -2,8 +2,14 @@ import { render, screen } from "@testing-library/react";
 import { MealPlanGenerator } from "./MealPlanGenerator";
 import "@testing-library/jest-dom/extend-expect";
 import { useUserContext } from "../../hooks/useUserContext";
+import { server } from "../../mocks/server";
+import { rest } from "msw";
 
 jest.mock("../../hooks/useUserContext");
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 describe("MealPlanGenerator", () => {
   const dummyMealResponse = {
@@ -54,5 +60,27 @@ describe("MealPlanGenerator", () => {
   it("renders the component successfully", () => {
     render(<MealPlanGenerator mealResponse={dummyMealResponse} />);
     expect(screen.getByText("Nutritional Information:")).toBeInTheDocument();
+  });
+  it("it throws 500 error", async () => {
+    server.use(
+      rest.get("https://localhost:3000/api/mealplan", (_req, res, ctx) => {
+        return res(
+          ctx.status(500),
+          ctx.json({ error: "An error occurred while creating the meal plan." })
+        );
+      })
+    );
+  });
+  it("it throws 404 error", async () => {
+    server.use(
+      rest.get("https://localhost:3000/api/mealplan", (_req, res, ctx) => {
+        return res(ctx.status(404), ctx.json({ error: "Not found" }));
+      })
+    );
+  });
+  it("displays meals based on a vegetarian diet", async () => {
+    render(<MealPlanGenerator mealResponse={dummyMealResponse} />);
+    const mealTitle = await screen.findByText("Blueberry Cinnamon Porridge");
+    expect(mealTitle).toBeInTheDocument();
   });
 });
