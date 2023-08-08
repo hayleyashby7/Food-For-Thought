@@ -1,26 +1,39 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 interface Nav_Item_Props {
-	linkTo: string;
-	text: string;
+  linkTo: string;
+  text: string;
 }
 
 const Nav_Item: React.FC<Nav_Item_Props> = ({ linkTo, text }) => (
-	<li className='flex-shrink text-center sm:text-left'>
-		<NavLink to={linkTo} className={({ isActive }) => (isActive ? 'text-red-500' : 'text-green-800')}>
-			{text}
-		</NavLink>
-	</li>
+  <li className="flex-shrink text-center sm:text-left">
+    <NavLink
+      to={linkTo}
+      className={({ isActive }) =>
+        isActive ? "text-red-500" : "text-green-800"
+      }
+    >
+      {text}
+    </NavLink>
+  </li>
 );
 const Nav: React.FC = () => (
-	<nav className='flex flex-grow items-center w-full md:max-w-xl'>
-		<ul className='flex flex-col sm:flex-row justify-evenly w-full font-bold text-lg'>
-			<Nav_Item linkTo='/' text='Home' />
-			<Nav_Item linkTo='/startplanning' text='Start Planning' />
-			<Nav_Item linkTo='/login' text='Sign In/Up' />
-			<Nav_Item linkTo='/userMealPlan' text='Saved Meal Plans' />
-		</ul>
-	</nav>
+  <nav className="flex flex-grow items-center w-full md:max-w-xl">
+    <ul className="flex flex-col sm:flex-row justify-evenly w-full font-bold text-lg">
+      <span className="custom-shadow">
+        <Nav_Item linkTo="/" text="Home" />
+      </span>
+      <span className="custom-shadow">
+        <Nav_Item linkTo="/startplanning" text="Start Planning" />
+      </span>
+      <span className="custom-shadow">
+        <Nav_Item linkTo="/login" text="Sign In/Up" />
+      </span>
+      <span className="custom-shadow">
+        <Nav_Item linkTo="/userMealPlan" text="Saved Meal Plans" />
+      </span>
+    </ul>
+  </nav>
 );
 
 export default Nav;
