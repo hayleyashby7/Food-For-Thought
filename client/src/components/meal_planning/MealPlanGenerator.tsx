@@ -62,7 +62,7 @@ export const MealPlanGenerator: React.FC<MealPlanGeneratorProps> = ({
         {meals.map((meal) => (
           <div
             key={meal.id}
-            className="rounded overflow:auto shadow-md bg-yellow-200 p-4 border-4 border-orange-400 h-96"
+            className="prominent-shadow rounded overflow:auto shadow-md bg-yellow-200 p-4 border-4 border-orange-400 h-96"
           >
             <img
               src={`https://spoonacular.com/recipeImages/${meal.id}-240x150.${meal.imageType}`}
@@ -89,7 +89,7 @@ export const MealPlanGenerator: React.FC<MealPlanGeneratorProps> = ({
       </div>
 
       <div className="flex mt-4 items-center gap-2">
-        <div className="border-4 border-orange-400 w-64">
+        <div className="border-4  bg-yellow-200 border-orange-400 w-64 prominent-shadow rounded-md">
           <h3 className="font-bold text-green-600">Nutritional Information:</h3>
           <p>Calories: {nutrients?.calories}</p>
           <p>Protein: {nutrients?.protein}g</p>
@@ -99,7 +99,7 @@ export const MealPlanGenerator: React.FC<MealPlanGeneratorProps> = ({
         <div>
           <button
             onClick={() => saveMealPlan(mealResponse)}
-            className="bg-green-600 text-white p-2 rounded hover:bg-green-800 w-24"
+            className="bg-green-600 prominent-shadow text-white p-2 rounded hover:bg-green-800 w-24"
           >
             Save
           </button>

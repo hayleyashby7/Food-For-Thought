@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       <img
         src={DishImage}
         alt="Images of different dishes"
-        className="block mx-auto h-32 sm:h-64 shadow-lg transform hover:scale-105 transition-transform duration-300"
+        className="block mx-auto h-32 sm:h-64 card prominent-shadow shadow-lg transform hover:scale-105 transition-transform duration-300"
       />
     </div>
   );

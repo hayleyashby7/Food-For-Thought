@@ -36,7 +36,7 @@ const StartPlanning: React.FC = () => {
 
   return (
     <div className="flex flex-row min-h-screen bg-yellow-100">
-      <div className="flex-1 flex flex-col items-center bg-yellow-100 text-red-900 h-96 pl-30">
+      <div className="flex-1 flex flex-col items-center text-red-900 h-96 pl-30">
         {!formActive ? (
           <StartButton onClick={startPlan} label="Start Plan" />
         ) : (
