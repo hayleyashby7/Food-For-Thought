@@ -3,7 +3,7 @@ import Layout from '../layout/layout';
 import Home from '../home/home';
 import StartPlanning from '../meal_planning/StartPlanning';
 import NotFound from '../not_found/not_found';
-import LoginForm from '../login/loginForm';
+import LoginForm from '../login/LoginForm';
 import HealthPage from '../health_page/health_page';
 import UserMealPlanPage from '../user_mealplans/userMealPlan';
 
