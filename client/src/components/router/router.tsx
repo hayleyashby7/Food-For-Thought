@@ -5,7 +5,8 @@ import StartPlanning from '../meal_planning/StartPlanning';
 import NotFound from '../not_found/not_found';
 import LoginForm from '../login/loginForm';
 import HealthPage from '../health_page/health_page';
-import { UserMealPlanPage } from '../user_mealplans/userMealPlan';
+import UserMealPlanPage from '../user_mealplans/userMealPlan';
+
 
 export const Router: React.FC = () => {
 	return (
