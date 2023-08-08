@@ -17,7 +17,7 @@ test("Router renders startplanning page", () => {
   const startPlanningElement = screen.getByRole("main");
 
   expect(startPlanningElement).toBeInTheDocument();
-  expect(startPlanningElement).toHaveTextContent("Start Planning");
+  expect(startPlanningElement).toHaveTextContent("Start Plan");
 });
 test("Router renders not found page", () => {
   renderWithRouter(<Router />, { route: "/page-not-found" });

@@ -24,7 +24,7 @@ const HealthPage = () => {
 
   return (
     <div className="min-h-screen flex justify-center bg-yellow-100">
-      <div className="w-64 h-48 sm:w-1/2 lg:w-1/3 p-6 bg-yellow-500 shadow-lg rounded-lg flex flex-col items-center sm:items-start">
+      <div className="card prominent-shadow w-64 h-48 sm:w-1/2 lg:w-1/3 p-6 bg-yellow-500 shadow-lg rounded-lg flex flex-col items-center sm:items-start">
         <h1 className="text-lg sm:text-base md:text-lg lg:text-xl font-bold mb-2 text-red-800 text-center sm:text-left">
           Health Page
         </h1>

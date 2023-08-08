@@ -5,7 +5,7 @@ const NotFound = () => (
     <img
       src={PNFImage}
       alt="404 page not found"
-      className="w-1/2 md:w-1/4 flex-shrink: 0"
+      className="prominent-shadow w-1/2 md:w-1/4 flex-shrink: 0"
     />
     <div className="text-center sm:text-left md:max-w-xl flex flex-col justify-center items-center sm:items-start">
       <h2 className="text-2xl md:text-4xl">

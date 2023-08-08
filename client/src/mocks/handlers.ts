@@ -1,9 +1,16 @@
 import { rest } from "msw";
 
 export const handlers = [
-  rest.get(
-    "localhost:3000/api/mealplan?calories=2000&diet=vegetarian&exclude=shellfish",
-    (req, res, ctx) => {
+  rest.get("https://localhost:3000/api/mealplan", (req, res, ctx) => {
+    const calories = req.url.searchParams.get("calories");
+    const diet = req.url.searchParams.get("diet");
+    const exclude = req.url.searchParams.get("exclude");
+
+    if (
+      calories === "2000" &&
+      diet === "vegetarian" &&
+      exclude === "shellfish"
+    ) {
       return res(
         ctx.json({
           status: 200,
@@ -44,5 +51,55 @@ export const handlers = [
         })
       );
     }
-  ),
+  }),
+
+  rest.get("https://localhost:3000/api/mealplan", (req, res, ctx) => {
+    const calories = req.url.searchParams.get("calories");
+    const diet = req.url.searchParams.get("diet");
+
+    if (calories === "3000" && diet === "paleo") {
+      return res(
+        ctx.json({
+          status: 200,
+          meals: [
+            {
+              id: 1100990,
+              imageType: "jpg",
+              title:
+                "Blueberry, Chocolate & Cocao Superfood Pancakes - Gluten-Free/Paleo/Vegan",
+              readyInMinutes: 30,
+              servings: 2,
+              sourceUrl:
+                "https://spoonacular.com/blueberry-chocolate-cocao-superfood-pancakes-gluten-free-paleo-vegan-1100990",
+            },
+            {
+              id: 641408,
+              imageType: "jpg",
+              title: "Delicious Sausage & Peppers",
+              readyInMinutes: 30,
+              servings: 8,
+              sourceUrl:
+                "https://spoonacular.com/delicious-sausage-peppers-641408",
+            },
+            {
+              id: 640990,
+              imageType: "jpg",
+              title: "Cuban Flank Steak With Avocado and Tomato Salad",
+              readyInMinutes: 45,
+              servings: 1,
+              sourceUrl:
+                "https://spoonacular.com/cuban-flank-steak-with-avocado-and-tomato-salad-640990",
+            },
+          ],
+          nutrients: {
+            calories: 2480.21,
+            protein: 86.79,
+            fat: 177.37,
+            carbohydrates: 155.46,
+          },
+        })
+      );
+    }
+    return res(ctx.status(404, "Not found"));
+  }),
 ];

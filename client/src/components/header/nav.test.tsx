@@ -35,5 +35,6 @@ describe("Nav", () => {
       "href",
       "/startplanning"
     );
+    expect(screen.getByText("Sign In/Up")).toHaveAttribute("href", "/login");
   });
 });

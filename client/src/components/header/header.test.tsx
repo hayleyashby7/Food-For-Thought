@@ -9,13 +9,6 @@ jest.mock("./nav", () => {
   };
 });
 
-jest.mock("../login/loginForm", () => {
-  return {
-    __esModule: true,
-    default: () => <div>Mock LoginForm</div>,
-  };
-});
-
 describe("Header", () => {
   it("renders the Header component", () => {
     const { container } = render(<Header />);
@@ -34,9 +27,8 @@ describe("Header", () => {
     expect(screen.getByText(/Food For Thought/i)).toBeInTheDocument();
   });
 
-  it("renders the Nav and LoginForm components", () => {
+  it("renders the Nav components", () => {
     render(<Header />);
     expect(screen.getByText("Mock Nav")).toBeInTheDocument();
-    expect(screen.getByText("Mock LoginForm")).toBeInTheDocument();
   });
 });
