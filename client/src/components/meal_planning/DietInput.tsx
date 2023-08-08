@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Select from '../form_inputs/Select';
+import { fetch } from 'cross-fetch';
 
 interface DietInputProps {
 	inputChanged: (value: string) => void;
