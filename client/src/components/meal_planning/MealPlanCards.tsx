@@ -1,5 +1,5 @@
 import React from "react";
-import { Meal } from "../../types/meal_data.type"; // Update the path to where your types are defined
+import { Meal } from "../../types/meal_data.type";
 
 interface MealPlanCardsProps {
   meal: Meal;
