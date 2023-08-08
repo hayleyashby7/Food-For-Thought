@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { MealPlanGenerator } from "./MealPlanGenerator";
+import MealPlanGenerator from "./MealPlanGenerator";
 import "@testing-library/jest-dom/extend-expect";
 import { useUserContext } from "../../hooks/useUserContext";
 import { server } from "../../mocks/server";
