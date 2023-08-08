@@ -5,12 +5,6 @@ import { useUserContext } from "../../hooks/useUserContext";
 
 jest.mock("../../hooks/useUserContext");
 
-global.fetch = jest.fn(() =>
-  Promise.resolve(
-    new Response(JSON.stringify({ message: "Meal plan saved successfully!" }))
-  )
-);
-
 describe("MealPlanGenerator", () => {
   const dummyMealResponse = {
     status: 200,
