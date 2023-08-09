@@ -67,7 +67,7 @@ export const MealForm: React.FC<MealFormProps> = ({
 
   return (
     <form
-      className="flex flex-col w-screen md:max-w-screen-md md:mx-auto justify-center px-2 my-2 border-4 border-orange-400 p-4"
+      className="flex flex-col w-screen md:max-w-screen-md md:mx-auto justify-center px-2 my-2 border-4 border-orange-400 p-4 prominent-shadow bg-yellow-100"
       onSubmit={handleSubmit}
     >
       <CalorieInput
