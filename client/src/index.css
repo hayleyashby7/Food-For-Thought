@@ -25,3 +25,31 @@
   padding: 5px 10px;
   border-radius: 5px;
 }
+
+.element {
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+/* The scrollbar itself */
+.element::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* The track (progress background) of the scrollbar */
+.element::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* The handle (scroll thumb) of the scrollbar */
+.element::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.element::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
