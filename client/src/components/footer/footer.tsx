@@ -14,7 +14,6 @@ const Footer: React.FC = () => {
       setIsFixed(true);
     }
 
-    // Optional: Re-run the effect if the window is resized
     window.addEventListener("resize", () => {
       if (contentHeight > viewportHeight + footerHeight) {
         setIsFixed(false);
@@ -23,7 +22,6 @@ const Footer: React.FC = () => {
       }
     });
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("resize", () => {});
     };
