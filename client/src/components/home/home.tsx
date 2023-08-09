@@ -3,7 +3,7 @@ import DishImage from '../../assets/images/dishes.jpg';
 
 const Home: React.FC = () => {
 	return (
-		<div className='flex flex-col items-center bg-yellow-100 text-red-900 h-full sm:h-96 md:max-w-xl mx-auto pb-4'>
+		<div className='min-w-fit flex flex-col items-center bg-yellow-100 text-red-900 h-full sm:h-96 mx-auto pb-4'>
 			<p className='text-center sm:text-left text-sm sm:text-2xl px-2'>
 				<strong>Welcome to our App!</strong>
 			</p>
