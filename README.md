@@ -25,8 +25,7 @@ Finally as the server is running as a https server for security, you will need t
 
 **1. Clone the repository** 
 
-<https://github.com/hayleyashby7/Food-For-Thought>
-
+`git clone git@github.com:hayleyashby7/Food-For-Thought.git`
 
 **2. Install the project dependencies in the server and client folders respectively**
 
