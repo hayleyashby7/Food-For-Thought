@@ -4,10 +4,8 @@ interface RemoveIngredientProps {
 	inputChanged: (value: string, valid: boolean) => void;
 }
 
-const RemoveIngredient: React.FC<RemoveIngredientProps> = ({ingredient, inputChanged}) => {
-	return  <Input name='removeInput' value={ingredient} label='Remove these ingredients' onInput={inputChanged} />;
-				
-
+const RemoveIngredient: React.FC<RemoveIngredientProps> = ({ ingredient, inputChanged }) => {
+	return <Input name='exclude' value={ingredient} label='Remove these ingredients' onInput={inputChanged} />;
 };
 
 export default RemoveIngredient;

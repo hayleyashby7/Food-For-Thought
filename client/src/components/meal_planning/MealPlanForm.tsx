@@ -33,30 +33,29 @@ export const MealForm: React.FC<MealFormProps> = ({
     event.preventDefault();
     const { calories, diet, remove } = mealRequest;
 
-    const buildQueryString = () => {
-      let queryString = `calories=${calories}`;
-      diet ? (queryString += `&diet=${diet}`) : null;
-      remove ? (queryString += `&exclude=${remove}`) : null;
-      return queryString;
-    };
+		const buildURL = () => {
+			const url = new URL('https://localhost:3000/api/mealplan');
+			url.searchParams.append('calories', calories);
+			diet ? url.searchParams.append('diet', diet) : null;
+			remove ? url.searchParams.append('exclude', remove) : null;
+			return url;
+		};
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://localhost:3000/api/mealplan?${buildQueryString()}`
-        );
-        if (!response.ok) {
-          throw new Error(`Server responded with ${response.status}`);
-        }
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          throw new Error("Received non-JSON response from server.");
-        }
-        setMealResponse(await response.json());
-      } catch (error) {
-        console.error(error);
-      }
-    };
+		const fetchData = async () => {
+			try {
+				const response = await fetch(buildURL().toString());
+				if (!response.ok) {
+					throw new Error(`Server responded with ${response.status}`);
+				}
+				const contentType = response.headers.get('content-type');
+				if (!contentType || !contentType.includes('application/json')) {
+					throw new Error('Received non-JSON response from server.');
+				}
+				setMealResponse(await response.json());
+			} catch (error) {
+				console.error(error);
+			}
+		};
 
     fetchData();
   }
@@ -66,32 +65,14 @@ export const MealForm: React.FC<MealFormProps> = ({
     setInputsValid({ ...inputsValid, [field]: valid });
   };
 
-  return (
-    <form method="post" onSubmit={handleSubmit}>
-      <CalorieInput
-        calories={mealRequest.calories}
-        inputChanged={(value, valid) =>
-          updateMealRequest("calories", value, valid)
-        }
-      />
-      {inputsValid.calories && (
-        <DietInput
-          inputChanged={(value) => updateMealRequest("diet", value, true)}
-        />
-      )}
-      {inputsValid.calories && inputsValid.diet && (
-        <RemoveIngredient
-          ingredient={mealRequest?.remove}
-          inputChanged={(value, valid) =>
-            updateMealRequest("remove", value, valid)
-          }
-        />
-      )}
-      {inputsValid.calories && inputsValid.diet && (
-        <SubmitButton text="Generate My Meals" />
-      )}
-    </form>
-  );
+	return (
+		<form className='flex flex-col w-screen md:max-w-screen-md md:mx-auto justify-center px-2 my-2' onSubmit={handleSubmit}>
+			<CalorieInput calories={mealRequest.calories} inputChanged={(value, valid) => updateMealRequest('calories', value, valid)} />
+			{inputsValid.calories && <DietInput inputChanged={(value) => updateMealRequest('diet', value, true)} />}
+			{inputsValid.calories && inputsValid.diet && <RemoveIngredient ingredient={mealRequest?.remove} inputChanged={(value, valid) => updateMealRequest('remove', value, valid)} />}
+			{inputsValid.calories && inputsValid.diet && <SubmitButton text='Generate My Meals' />}
+		</form>
+	);
 };
 
 export default MealForm;

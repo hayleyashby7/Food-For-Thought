@@ -9,13 +9,13 @@ interface SelectProps {
 const Select: React.FC<SelectProps> = ({ name, value, label, onInput, options }) => {
 	return (
 		<>
-			<div className='flex flex-col flex-nowrap m-2 gap-2'>
-				<label htmlFor={name}>{label}</label>
-				<select className='flex-2 font-semibold rounded-md' id={name} name={name} value={value} onChange={(event) => onInput(event.target.value)}>
+			<div className='flex flex-col mb-4 w-full'>
+				<label className='font-bold text-lg pl-1' htmlFor={name}>
+					{label}
+				</label>
+				<select className='border py-2 px-3 font-semibold rounded-md mb-1' id={name} name={name} value={value} onChange={(event) => onInput(event.target.value)}>
 					<option key='none'>None</option>
-					{options.map((option) => (
-						<option key={option}>{option}</option>
-					))}
+					{options.map((option) => <option key={option}>{option}</option>)}
 				</select>
 			</div>
 		</>
