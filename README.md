@@ -17,33 +17,63 @@ Food For Thought is a full-stack meal planning application built with Vite, Reac
 
 You need to have Node.js and npm installed on your system to run this project. You will also need to set up an account with Supabase and Spoonacular to obtain the necessary API keys.
 
+---
+
 ### Installation
 
-1.Clone the repository:
+**1. Clone the repository** 
 
 <https://github.com/hayleyashby7/Food-For-Thought>
 
-2.Navigate to the project directory:
 
-- cd food-for-thought
+**2. Install the project dependencies in the server and client folders respectively**
 
-3.Install the project dependencies:
+Server
+From project root
 
-npm install
+`cd server`
 
-4.Create a `.env` file in the root of the project and add your Supabase and Spoonacular API credentials:
+`npm install`
 
-SUPABASE_URL=your-supabase-url
-SUPABASE_ANON_KEY=your-supabase-anon-key
-SPOONACULAR_API_KEY=your-spoonacular-api-key
+Client 
+From project root
 
-5.Start the development server:
+`cd client`
 
-npm run dev
+`npm install`
+
+**3. Create a `.env` file in the root of the server folder and add your Supabase and Spoonacular API credentials**
+
+`SUPABASE_URL=your-supabase-url`
+
+`SUPABASE_ANON_KEY=your-supabase-anon-key`
+
+`SPOONACULAR_API_KEY=your-spoonacular-api-key`
+
+**4. Start the server**
+
+In root of server folder 
+
+`npm run dev`
+
+The server will start on port 3000
+
+`https://localhost:3000`
+
+**5. Start the client app**   
+
+In root of client folder 
+
+`npm run dev`
+
+The client will start on port 5173
+
+`https://localhost:5173`
+
 
 ## Usage
 
-After starting the development server, you can navigate to `http://localhost:3000` (<http://localhost:5173/>) to access the Food For Thought app. Register an account and start planning your meals!
+After starting the development server, you can navigate to [Food For Thought](https://localhost:5173) to access the Food For Thought app. Register an account and start planning your meals!
 
 ## Contributing
 
