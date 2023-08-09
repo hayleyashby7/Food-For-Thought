@@ -17,7 +17,7 @@ Food For Thought is a full-stack meal planning application built with Vite, Reac
 
 You need to have Node.js and npm installed on your system to run this project. You will also need to set up an account with Supabase and Spoonacular to obtain the necessary API keys. 
 
-Finally as the server is running as a https server for security, you will need to generate a self-signed SSL certificate using OpenSSL. Instructions for this are beyond the scope of this project and can be found online. 
+Finally as the server is running as a https server for security, you will need to generate a self-signed SSL certificate and .pem keys using OpenSSL. Instructions for this are beyond the scope of this project and can be found online. They should sit in your server root folder as cert.pem, key.pem and keytmp.pem.
 
 ---
 
@@ -50,8 +50,6 @@ From project root
 `SUPABASE_ANON_KEY=your-supabase-anon-key`
 
 `SPOONACULAR_API_KEY=your-spoonacular-api-key`
-
-`SESSION_KEY=your-SSL-cert-key`
 
 **4. Start the server**
 
